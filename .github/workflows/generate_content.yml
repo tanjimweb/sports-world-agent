@@ -1,0 +1,56 @@
+name: Generate Daily Content
+
+on:
+  schedule:
+    - cron: '30 1 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Download fonts
+        run: |
+          mkdir -p assets/fonts
+          curl -L -o assets/fonts/Poppins-Bold.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Bold.ttf"
+          curl -L -o assets/fonts/Poppins-Medium.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Medium.ttf"
+          curl -L -o assets/fonts/Poppins-Regular.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Regular.ttf"
+
+      - name: Run content agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/content_agent.py
+
+      - name: Generate images
+        run: |
+          python scripts/image_generator.py
+
+      - name: Generate captions
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/caption_generator.py
+
+      - name: Commit and push generated content
+        run: |
+          git config user.name "sports-world-bot"
+          git config user.email "actions@github.com"
+          git add data/
+          git diff --quiet --cached || git commit -m "Auto-generate content for $(date -u +%Y-%m-%d)"
+          git push
