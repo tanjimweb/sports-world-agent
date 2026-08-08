@@ -4,13 +4,16 @@ content_agent.py
 Finds real, current sports news (India-focused, per our category strategy),
 using Gemini + Google Search grounding, and saves today's posts as JSON.
 
-Runs ONCE per day (see .github/workflows/generate_content.yml).
+Runs 3 times a day, as part of the single combined workflow (see
+.github/workflows/run_agent.yml) — each run finds AS MANY genuinely
+newsworthy stories as it can (not a fixed count), then the same run
+generates images, captions, and posts them immediately.
 
 ENV VARS REQUIRED (set as GitHub Secrets):
     GEMINI_API_KEY
 
 OUTPUT:
-    data/posts_today.json   <- today's posts (used by the image + posting scripts)
+    data/posts_today.json   <- this run's posts (used by the image + posting scripts)
     data/history.json       <- running list of used headlines (to avoid repeats)
 """
 
@@ -25,7 +28,8 @@ from google import genai
 from google.genai import types
 
 MODEL_NAME = "gemini-2.5-flash"
-POSTS_PER_DAY = 5
+MIN_POSTS = 2
+MAX_POSTS = 8
 HISTORY_FILE = "data/history.json"
 OUTPUT_FILE = "data/posts_today.json"
 HISTORY_MAX_ENTRIES = 300
@@ -87,8 +91,12 @@ Choose exactly one template code for each post, from:
 """
 
 JSON_INSTRUCTIONS = f"""
-Return EXACTLY {POSTS_PER_DAY} posts as a JSON array. Return ONLY raw JSON —
-no markdown code fences, no explanation text before or after.
+Return a JSON array of GENUINELY newsworthy, current, trending posts you can
+verify right now — typically between {MIN_POSTS} and {MAX_POSTS}. Do NOT pad
+the list with low-quality or stale filler just to hit a number. If there are
+only 2 truly good stories right now, return 2. If there are 8 excellent ones,
+return up to 8, but never more than {MAX_POSTS}. Return ONLY raw JSON — no
+markdown code fences, no explanation text before or after.
 
 Each post must be an object with these exact fields:
 {{
@@ -138,12 +146,12 @@ def save_history(history):
 
 
 def build_prompt(history):
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     recent_titles = [h.get("headline", "") for h in history[-60:]]
     history_block = "\n".join(f"- {t}" for t in recent_titles) if recent_titles else "(none yet)"
 
     return f"""You are a sports news editor for an Indian sports news page
-called SPORTS_WORLD. Today's date is {today}.
+called SPORTS_WORLD. Right now it is {today}.
 
 {CONTENT_STRATEGY}
 
@@ -210,6 +218,8 @@ def main():
         print("[content_agent] ERROR: Gemini did not return a non-empty list of posts.")
         sys.exit(1)
 
+    posts = posts[:MAX_POSTS]
+
     used_headlines_lower = {h.get("headline", "").lower() for h in history}
     valid_posts = []
     for p in posts:
@@ -226,8 +236,9 @@ def main():
         valid_posts.append(p)
 
     if not valid_posts:
-        print("[content_agent] ERROR: all posts were duplicates or invalid.")
-        sys.exit(1)
+        print("[content_agent] No new posts this run (all duplicates or invalid). "
+              "Writing an empty list so later steps skip cleanly.")
+        valid_posts = []
 
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
