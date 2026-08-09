@@ -1,95 +1,114 @@
 """
 facebook_poster.py
 -------------------
-Sends ONE image + caption (chosen by POST_INDEX) to the Facebook Page.
-Runs 5 times a day, alongside telegram_poster.py, with the same
-POST_INDEX (1-5) passed in as an environment variable.
+Posts ALL of this run's images (with their captions + hashtags) to the
+Facebook Page, one after another, with a short delay between each.
 
-Facebook posts get the image PLUS the caption + hashtags (unlike
-Telegram, which gets image only).
+Runs 3 times a day, right after telegram_poster.py, as part of the single
+combined workflow. If Facebook posting fails for a post (or entirely),
+this script does NOT crash the whole run — Telegram posting has already
+happened by this point, and the workflow step itself also has
+continue-on-error set as a second safety net.
 
-If the requested POST_INDEX has no image (template F, skipped) or no
-matching caption, this exits cleanly without error.
-
-ENV VARS REQUIRED (set as GitHub Secrets / workflow env):
+ENV VARS REQUIRED (set as GitHub Secrets):
     FB_PAGE_ACCESS_TOKEN
     FB_PAGE_ID
-    POST_INDEX           (e.g. 1, 2, 3, 4, or 5)
 """
 
 import os
 import sys
 import json
+import time
 import requests
 
 MANIFEST_FILE = "data/images/manifest.json"
-CAPTIONS_FILE = "data/captions.json"
 IMAGES_DIR = "data/images"
+CAPTIONS_FILE = "data/captions.json"
+DELAY_BETWEEN_POSTS_SECONDS = 5
 GRAPH_API_VERSION = "v21.0"
 
 
+def build_message(caption_entry):
+    if not caption_entry:
+        return ""
+    caption = caption_entry.get("caption", "").strip()
+    hashtags = caption_entry.get("hashtags", [])
+    hashtag_line = " ".join(hashtags) if hashtags else ""
+    if caption and hashtag_line:
+        return f"{caption}\n\n{hashtag_line}"
+    return caption or hashtag_line
+
+
+def post_photo(page_id, access_token, image_path, message):
+    url = f"https://graph.facebook.com/{GRAPH_API_VERSION}/{page_id}/photos"
+    with open(image_path, "rb") as photo_file:
+        response = requests.post(
+            url,
+            data={"message": message, "access_token": access_token},
+            files={"source": photo_file},
+            timeout=60,
+        )
+    return response
+
+
 def main():
-    access_token = os.environ.get("FB_PAGE_ACCESS_TOKEN")
     page_id = os.environ.get("FB_PAGE_ID")
-    post_index = os.environ.get("POST_INDEX")
+    access_token = os.environ.get("FB_PAGE_ACCESS_TOKEN")
 
-    if not access_token or not page_id:
-        print("[facebook_poster] ERROR: FB_PAGE_ACCESS_TOKEN or FB_PAGE_ID not set.")
-        sys.exit(1)
-
-    if not post_index:
-        print("[facebook_poster] ERROR: POST_INDEX not set.")
-        sys.exit(1)
+    if not page_id or not access_token:
+        print("[facebook_poster] FB_PAGE_ID or FB_PAGE_ACCESS_TOKEN not set — skipping Facebook posting for this run.")
+        sys.exit(0)
 
     if not os.path.exists(MANIFEST_FILE):
-        print(f"[facebook_poster] {MANIFEST_FILE} not found — nothing generated today yet. Exiting quietly.")
+        print(f"[facebook_poster] {MANIFEST_FILE} not found — nothing generated this run. Exiting quietly.")
         sys.exit(0)
 
     with open(MANIFEST_FILE, "r", encoding="utf-8") as f:
         manifest = json.load(f)
 
-    target_filename = f"post_{post_index}.jpg"
-    entry = next((m for m in manifest if m.get("image") == target_filename), None)
-
-    if entry is None:
-        print(f"[facebook_poster] No image for slot {post_index} today "
-              f"(likely a Struggle-Carousel story that needs a manual post). Exiting quietly.")
+    if not manifest:
+        print("[facebook_poster] No posts this run. Nothing to send.")
         sys.exit(0)
 
-    image_path = os.path.join(IMAGES_DIR, target_filename)
-    if not os.path.exists(image_path):
-        print(f"[facebook_poster] ERROR: manifest points to {image_path} but the file is missing.")
-        sys.exit(1)
-
-    caption_text = ""
+    captions = []
     if os.path.exists(CAPTIONS_FILE):
         with open(CAPTIONS_FILE, "r", encoding="utf-8") as f:
             captions = json.load(f)
-        cap_entry = next((c for c in captions if str(c.get("post_index")) == str(post_index)), None)
-        if cap_entry:
-            hashtags = " ".join(f"#{h}" for h in cap_entry.get("hashtags", []))
-            caption_text = f"{cap_entry.get('caption', '')}\n\n{hashtags}".strip()
 
-    if not caption_text:
-        print(f"[facebook_poster] WARNING: no caption found for slot {post_index}, posting image only.")
+    sent_count = 0
 
-    url = f"https://graph.facebook.com/{GRAPH_API_VERSION}/{page_id}/photos"
-    with open(image_path, "rb") as photo_file:
-        response = requests.post(
-            url,
-            data={"caption": caption_text, "access_token": access_token},
-            files={"source": photo_file},
-            timeout=60,
-        )
+    for i, entry in enumerate(manifest):
+        filename = entry.get("image")
+        image_path = os.path.join(IMAGES_DIR, filename) if filename else None
 
-    if response.status_code == 200 and "id" in response.json():
-        print(f"[facebook_poster] Sent slot {post_index} ({target_filename}) to Facebook successfully.")
-        entry["facebook_sent"] = True
-        with open(MANIFEST_FILE, "w", encoding="utf-8") as f:
-            json.dump(manifest, f, ensure_ascii=False, indent=2)
-    else:
-        print(f"[facebook_poster] ERROR: Facebook API returned {response.status_code}: {response.text}")
-        sys.exit(1)
+        if not image_path or not os.path.exists(image_path):
+            print(f"[facebook_poster] Skipping entry {i + 1}: image file missing ({filename}).")
+            entry["facebook_sent"] = False
+            continue
+
+        caption_entry = captions[i] if i < len(captions) else None
+        message = build_message(caption_entry)
+
+        try:
+            response = post_photo(page_id, access_token, image_path, message)
+            if response.status_code == 200 and "id" in response.json():
+                print(f"[facebook_poster] Posted {filename} to Facebook successfully.")
+                entry["facebook_sent"] = True
+                sent_count += 1
+            else:
+                print(f"[facebook_poster] ERROR posting {filename}: {response.status_code} {response.text}")
+                entry["facebook_sent"] = False
+        except Exception as e:
+            print(f"[facebook_poster] EXCEPTION posting {filename}: {e}")
+            entry["facebook_sent"] = False
+
+        if i < len(manifest) - 1:
+            time.sleep(DELAY_BETWEEN_POSTS_SECONDS)
+
+    with open(MANIFEST_FILE, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, ensure_ascii=False, indent=2)
+
+    print(f"[facebook_poster] Done. Posted {sent_count}/{len(manifest)} post(s) to Facebook.")
 
 
 if __name__ == "__main__":
