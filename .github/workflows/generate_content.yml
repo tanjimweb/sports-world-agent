@@ -1,18 +1,29 @@
-name: Generate Daily Content
+name: Sports World Agent
 
 on:
   schedule:
+    # Runs 3x/day IST: 7:00 AM, 2:00 PM, 7:00 PM (IST = UTC+5:30)
+    # -> 1:30 UTC, 8:30 UTC, 13:30 UTC
     - cron: '30 1 * * *'
+    - cron: '30 8 * * *'
+    - cron: '30 13 * * *'
   workflow_dispatch: {}
 
 permissions:
   contents: write
 
 jobs:
-  generate:
+  run-agent:
     runs-on: ubuntu-latest
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+      FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -21,20 +32,38 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Download fonts
         run: |
           mkdir -p assets/fonts
-          curl -L -o assets/fonts/Poppins-Bold.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Bold.ttf"
-          curl -L -o assets/fonts/Poppins-Medium.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Medium.ttf"
-          curl -L -o assets/fonts/Poppins-Regular.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Regular.ttf"
+          curl -sL -o assets/fonts/Poppins-Bold.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Bold.ttf"
+          curl -sL -o assets/fonts/Poppins-Medium.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Medium.ttf"
+          curl -sL -o assets/fonts/Poppins-Regular.ttf "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Regular.ttf"
 
-      - name: Run content agent
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      - name: Find and gather today's news
+        run: python scripts/content_agent.py
+
+      - name: Generate images
+        run: python scripts/image_generator.py
+
+      - name: Generate captions
+        run: python scripts/caption_generator.py
+
+      - name: Post to Telegram
+        run: python scripts/telegram_poster.py
+
+      - name: Post to Facebook
+        run: python scripts/facebook_poster.py
+        continue-on-error: true
+
+      - name: Commit and push data
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "Update sports_world data [skip ci]"
+          git push        run: |
           python scripts/content_agent.py
 
       - name: Generate images
