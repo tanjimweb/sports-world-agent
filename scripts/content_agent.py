@@ -27,7 +27,7 @@ from datetime import datetime, timezone
 from google import genai
 from google.genai import types
 
-MODEL_NAME = "gemini-3.6-flash"
+MODEL_NAME = "gemini-3.5-flash-lite"
 MIN_POSTS = 2
 MAX_POSTS = 8
 HISTORY_FILE = "data/history.json"
