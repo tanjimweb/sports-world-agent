@@ -26,7 +26,7 @@ import re
 from google import genai
 from google.genai import types
 
-MODEL_NAME = "gemini-2.5-flash"
+MODEL_NAME = "gemini-3.6-flash"
 POSTS_FILE = "data/posts_today.json"
 OUTPUT_FILE = "data/captions.json"
 TELEGRAM_LINK = "t.me/sports_world"
