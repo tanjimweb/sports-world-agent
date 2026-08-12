@@ -280,6 +280,7 @@ def main():
         print("[content_agent] ERROR: no candidate headlines fetched from RSS. Exiting.")
         sys.exit(1)
     print(f"[content_agent] {len(candidates)} unique candidate headlines gathered.")
+    candidates = candidates[:40]
 
     prompt = build_prompt(history, candidates)
 
