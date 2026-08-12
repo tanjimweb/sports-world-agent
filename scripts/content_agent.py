@@ -1,14 +1,16 @@
 """
 content_agent.py
 -----------------
-Finds real, current sports news (India-focused, per our category strategy),
-using Groq's "compound" model (built-in live web search) and saves today's
-posts as JSON.
+Finds real, current sports news (India-focused, per our category strategy).
+
+Step 1: pulls real, just-published headlines from Google News RSS (free,
+no API key, no quota) across several sports-focused search queries.
+Step 2: sends those real candidate headlines to Groq (openai/gpt-oss-120b)
+and asks it to select + rewrite the best 2-8 of them into our post format.
+The model may ONLY pick from the real candidates -- it cannot invent news.
 
 Runs 3 times a day, as part of the single combined workflow (see
-.github/workflows/generate_content.yml) -- each run finds AS MANY genuinely
-newsworthy stories as it can (not a fixed count), then the same run
-generates images, captions, and posts them immediately.
+.github/workflows/generate_content.yml).
 
 ENV VARS REQUIRED (set as GitHub Secrets):
     GROQ_API_KEY
@@ -24,15 +26,28 @@ import json
 import time
 import re
 import requests
+import xml.etree.ElementTree as ET
+from urllib.parse import quote
 from datetime import datetime, timezone
 
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-MODEL_NAME = "groq/compound"
+MODEL_NAME = "openai/gpt-oss-120b"
 MIN_POSTS = 2
 MAX_POSTS = 8
 HISTORY_FILE = "data/history.json"
 OUTPUT_FILE = "data/posts_today.json"
 HISTORY_MAX_ENTRIES = 300
+MAX_ITEMS_PER_QUERY = 12
+
+NEWS_QUERIES = [
+    "India cricket news",
+    "India Olympics sports news",
+    "Indian athlete record award",
+    "India hockey badminton wrestling boxing athletics",
+    "India kabaddi football sports news",
+    "world sports news today",
+    "athlete retirement transfer ban doping world record",
+]
 
 CONTENT_STRATEGY = """
 SPLIT: 80% India-focused content, 20% international.
@@ -90,43 +105,46 @@ Choose exactly one template code for each post, from:
                                later add an old/archival photo manually)
 """
 
-JSON_INSTRUCTIONS = f"""
-Return a JSON array of GENUINELY newsworthy, current, trending posts you can
-verify right now -- typically between {MIN_POSTS} and {MAX_POSTS}. Do NOT pad
-the list with low-quality or stale filler just to hit a number. If there are
-only 2 truly good stories right now, return 2. If there are 8 excellent ones,
-return up to 8, but never more than {MAX_POSTS}. Return ONLY raw JSON -- no
-markdown code fences, no explanation text before or after, no text outside
-the JSON array.
 
-Each post must be an object with these exact fields:
-{{
-  "sport": "e.g. Cricket",
-  "category": "one short label, e.g. Gold Medal Winner",
-  "template": "A" | "B" | "C" | "D" | "E" | "F",
-  "headline": "1-2 sentence factual summary in your own words, 25-35 words",
-  "highlight_phrase": "a short phrase (3-6 words) copied EXACTLY from the
-                        headline field above, to be highlighted in gold in
-                        the image design",
-  "footer_text": "short bottom-line detail, e.g. names/date/result, under 8 words",
-  "source_names": ["names of publications this was reported by, if known"],
-  "table_rows": []
-}}
+def fetch_google_news_rss(query, max_items=MAX_ITEMS_PER_QUERY):
+    url = f"https://news.google.com/rss/search?q={quote(query)}&hl=en-IN&gl=IN&ceid=IN:en"
+    try:
+        resp = requests.get(
+            url,
+            headers={"User-Agent": "Mozilla/5.0 (compatible; SportsWorldAgent/1.0)"},
+            timeout=20,
+        )
+        resp.raise_for_status()
+        root = ET.fromstring(resp.content)
+        items = []
+        for item in root.findall(".//item")[:max_items]:
+            title = (item.findtext("title") or "").strip()
+            link = (item.findtext("link") or "").strip()
+            pub_date = (item.findtext("pubDate") or "").strip()
+            source_el = item.find("source")
+            source = source_el.text.strip() if source_el is not None and source_el.text else ""
+            if title:
+                items.append({"title": title, "link": link, "pubDate": pub_date, "source": source})
+        return items
+    except Exception as e:
+        print(f"[content_agent] RSS fetch failed for '{query}': {e}")
+        return []
 
-table_rows rule (IMPORTANT):
-- If template is "C" (Stats Grid) or "D" (Standings/Tally Table), fill
-  table_rows with 2-6 pairs of [label, value] representing the actual
-  stats/standings, e.g. [["2018", "Gold Coast - Women's 48kg"], ["2022",
-  "Birmingham - Women's 49kg"]] or [["AUSTRALIA", "87.50"], ["INDIA", "48.15"]].
-- For every other template (A, B, E, F), table_rows MUST be an empty array [].
 
-Rules:
-- Only use real, verifiable, CURRENT news (use your web search tool to confirm facts).
-- Do not invent quotes. Do not invent statistics.
-- highlight_phrase MUST be an exact substring of headline.
-- Follow the PRIORITY ORDER above when choosing which stories to include.
-- Do not repeat any story listed under PREVIOUSLY USED STORIES below.
-"""
+def gather_candidates():
+    seen_titles = set()
+    candidates = []
+    for q in NEWS_QUERIES:
+        items = fetch_google_news_rss(q)
+        print(f"[content_agent] '{q}': {len(items)} items fetched")
+        for it in items:
+            key = it["title"].lower()
+            if key in seen_titles:
+                continue
+            seen_titles.add(key)
+            candidates.append(it)
+        time.sleep(1)
+    return candidates
 
 
 def load_history():
@@ -146,23 +164,70 @@ def save_history(history):
         json.dump(trimmed, f, ensure_ascii=False, indent=2)
 
 
-def build_prompt(history):
+def build_prompt(history, candidates):
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     recent_titles = [h.get("headline", "") for h in history[-60:]]
     history_block = "\n".join(f"- {t}" for t in recent_titles) if recent_titles else "(none yet)"
 
+    candidates_block = "\n".join(
+        f"{i}. [{c['source']}] {c['title']}" for i, c in enumerate(candidates, 1)
+    ) if candidates else "(none fetched)"
+
+    json_instructions = f"""
+You must ONLY pick stories from the CANDIDATE HEADLINES list below -- these
+were fetched moments ago from real news sources. Do NOT invent, add, or use
+any story that is not in this list. Do NOT use outside knowledge.
+
+Return a JSON array of the best {MIN_POSTS}-{MAX_POSTS} candidates according
+to the PRIORITY ORDER and content strategy below. If fewer than {MIN_POSTS}
+candidates are genuinely relevant sports news, return as many as are
+relevant (can be fewer than {MIN_POSTS}). Never return more than {MAX_POSTS}.
+Return ONLY raw JSON -- no markdown code fences, no explanation text before
+or after, no text outside the JSON array.
+
+Each post must be an object with these exact fields:
+{{
+  "sport": "e.g. Cricket",
+  "category": "one short label, e.g. Gold Medal Winner",
+  "template": "A" | "B" | "C" | "D" | "E" | "F",
+  "headline": "1-2 sentence factual summary IN YOUR OWN WORDS based on the
+               candidate title, 25-35 words",
+  "highlight_phrase": "a short phrase (3-6 words) copied EXACTLY from the
+                        headline field above, to be highlighted in gold in
+                        the image design",
+  "footer_text": "short bottom-line detail, e.g. names/date/result, under 8 words",
+  "source_names": ["the source name(s) shown in brackets for that candidate"],
+  "table_rows": []
+}}
+
+table_rows rule (IMPORTANT):
+- If template is "C" (Stats Grid) or "D" (Standings/Tally Table), fill
+  table_rows with 2-6 pairs of [label, value] representing the actual
+  stats/standings you can infer from the headline, e.g. [["2018", "Gold
+  Coast - Women's 48kg"], ["2022", "Birmingham - Women's 49kg"]].
+- For every other template (A, B, E, F), table_rows MUST be an empty array [].
+
+Rules:
+- Do not invent quotes. Do not invent statistics beyond what's implied by the headline.
+- highlight_phrase MUST be an exact substring of headline.
+- Follow the PRIORITY ORDER above when choosing which candidates to include.
+- Do not repeat any story listed under PREVIOUSLY USED STORIES below.
+"""
+
     return f"""You are a sports news editor for an Indian sports news page
-called SPORTS_WORLD. Right now it is {today}. Use your web search tool to
-find real, current sports news before answering.
+called SPORTS_WORLD. Right now it is {today}.
 
 {CONTENT_STRATEGY}
 
 {TEMPLATE_GUIDE}
 
+CANDIDATE HEADLINES (real, fetched moments ago -- only pick from this list):
+{candidates_block}
+
 PREVIOUSLY USED STORIES (do not repeat these or very similar ones):
 {history_block}
 
-{JSON_INSTRUCTIONS}
+{json_instructions}
 """
 
 
@@ -187,15 +252,15 @@ def call_groq_with_retry(api_key, prompt, max_retries=2):
     }
     for attempt in range(max_retries + 1):
         try:
-            response = requests.post(GROQ_API_URL, headers=headers, json=payload, timeout=120)
+            response = requests.post(GROQ_API_URL, headers=headers, json=payload, timeout=90)
             response.raise_for_status()
             data = response.json()
             return data["choices"][0]["message"]["content"]
         except Exception as e:
             print(f"[content_agent] Groq call failed (attempt {attempt + 1}): {e}")
             if attempt < max_retries:
-                print("[content_agent] waiting 30s before retry...")
-                time.sleep(30)
+                print("[content_agent] waiting 20s before retry...")
+                time.sleep(20)
             else:
                 raise
 
@@ -207,7 +272,14 @@ def main():
         sys.exit(1)
 
     history = load_history()
-    prompt = build_prompt(history)
+
+    candidates = gather_candidates()
+    if not candidates:
+        print("[content_agent] ERROR: no candidate headlines fetched from RSS. Exiting.")
+        sys.exit(1)
+    print(f"[content_agent] {len(candidates)} unique candidate headlines gathered.")
+
+    prompt = build_prompt(history, candidates)
 
     raw_text = call_groq_with_retry(api_key, prompt)
     cleaned = strip_code_fences(raw_text)
