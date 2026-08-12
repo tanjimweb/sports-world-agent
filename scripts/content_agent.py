@@ -2,15 +2,16 @@
 content_agent.py
 -----------------
 Finds real, current sports news (India-focused, per our category strategy),
-using Gemini + Google Search grounding, and saves today's posts as JSON.
+using Groq's "compound" model (built-in live web search) and saves today's
+posts as JSON.
 
 Runs 3 times a day, as part of the single combined workflow (see
-.github/workflows/run_agent.yml) — each run finds AS MANY genuinely
+.github/workflows/generate_content.yml) -- each run finds AS MANY genuinely
 newsworthy stories as it can (not a fixed count), then the same run
 generates images, captions, and posts them immediately.
 
 ENV VARS REQUIRED (set as GitHub Secrets):
-    GEMINI_API_KEY
+    GROQ_API_KEY
 
 OUTPUT:
     data/posts_today.json   <- this run's posts (used by the image + posting scripts)
@@ -22,12 +23,11 @@ import sys
 import json
 import time
 import re
+import requests
 from datetime import datetime, timezone
 
-from google import genai
-from google.genai import types
-
-MODEL_NAME = "gemini-3.5-flash-lite"
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+MODEL_NAME = "groq/compound"
 MIN_POSTS = 2
 MAX_POSTS = 8
 HISTORY_FILE = "data/history.json"
@@ -37,7 +37,7 @@ HISTORY_MAX_ENTRIES = 300
 CONTENT_STRATEGY = """
 SPLIT: 80% India-focused content, 20% international.
 
-PRIORITY 1 (India, ~80% of posts) — look for:
+PRIORITY 1 (India, ~80% of posts) -- look for:
 Gold/Silver/Bronze medal wins, championship wins, India team title wins,
 new national/world/Asian records by Indian athletes, "first Indian ever"
 historic achievements, awards/honours received, major athlete birthdays
@@ -48,7 +48,7 @@ results, important official statements, Khelo India news, University
 Games, Para Sports achievements, Junior/U-19/U-23 achievements,
 Women's sports achievements.
 
-PRIORITY 2 (International, ~20% of posts) — look for:
+PRIORITY 2 (International, ~20% of posts) -- look for:
 death of a famous athlete, serious accidents, major injuries,
 retirements, coach resignations, big transfers, bans/suspensions,
 doping cases, major championship wins, world records, viral
@@ -92,11 +92,12 @@ Choose exactly one template code for each post, from:
 
 JSON_INSTRUCTIONS = f"""
 Return a JSON array of GENUINELY newsworthy, current, trending posts you can
-verify right now — typically between {MIN_POSTS} and {MAX_POSTS}. Do NOT pad
+verify right now -- typically between {MIN_POSTS} and {MAX_POSTS}. Do NOT pad
 the list with low-quality or stale filler just to hit a number. If there are
 only 2 truly good stories right now, return 2. If there are 8 excellent ones,
-return up to 8, but never more than {MAX_POSTS}. Return ONLY raw JSON — no
-markdown code fences, no explanation text before or after.
+return up to 8, but never more than {MAX_POSTS}. Return ONLY raw JSON -- no
+markdown code fences, no explanation text before or after, no text outside
+the JSON array.
 
 Each post must be an object with these exact fields:
 {{
@@ -120,7 +121,7 @@ table_rows rule (IMPORTANT):
 - For every other template (A, B, E, F), table_rows MUST be an empty array [].
 
 Rules:
-- Only use real, verifiable, CURRENT news (use Google Search to confirm facts).
+- Only use real, verifiable, CURRENT news (use your web search tool to confirm facts).
 - Do not invent quotes. Do not invent statistics.
 - highlight_phrase MUST be an exact substring of headline.
 - Follow the PRIORITY ORDER above when choosing which stories to include.
@@ -151,7 +152,8 @@ def build_prompt(history):
     history_block = "\n".join(f"- {t}" for t in recent_titles) if recent_titles else "(none yet)"
 
     return f"""You are a sports news editor for an Indian sports news page
-called SPORTS_WORLD. Right now it is {today}.
+called SPORTS_WORLD. Right now it is {today}. Use your web search tool to
+find real, current sports news before answering.
 
 {CONTENT_STRATEGY}
 
@@ -168,54 +170,58 @@ def strip_code_fences(text):
     text = text.strip()
     text = re.sub(r"^```(?:json)?\s*", "", text)
     text = re.sub(r"\s*```$", "", text)
+    match = re.search(r"\[.*\]", text, re.DOTALL)
+    if match:
+        return match.group(0).strip()
     return text.strip()
 
 
-def call_gemini_with_retry(client, prompt, max_retries=2):
+def call_groq_with_retry(api_key, prompt, max_retries=2):
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "model": MODEL_NAME,
+        "messages": [{"role": "user", "content": prompt}],
+    }
     for attempt in range(max_retries + 1):
         try:
-            response = client.models.generate_content(
-                model=MODEL_NAME,
-                contents=prompt,
-                config=types.GenerateContentConfig(
-                    tools=[types.Tool(google_search=types.GoogleSearch())],
-                ),
-            )
-            return response.text
+            response = requests.post(GROQ_API_URL, headers=headers, json=payload, timeout=120)
+            response.raise_for_status()
+            data = response.json()
+            return data["choices"][0]["message"]["content"]
         except Exception as e:
-            print(f"[content_agent] Gemini call failed (attempt {attempt + 1}): {e}")
+            print(f"[content_agent] Groq call failed (attempt {attempt + 1}): {e}")
             if attempt < max_retries:
-                print("[content_agent] waiting 60s before retry...")
-                time.sleep(60)
+                print("[content_agent] waiting 30s before retry...")
+                time.sleep(30)
             else:
                 raise
 
 
 def main():
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
-        print("[content_agent] ERROR: GEMINI_API_KEY environment variable not set.")
+        print("[content_agent] ERROR: GROQ_API_KEY environment variable not set.")
         sys.exit(1)
 
-    time.sleep(20)
-
-    client = genai.Client(api_key=api_key)
     history = load_history()
     prompt = build_prompt(history)
 
-    raw_text = call_gemini_with_retry(client, prompt)
+    raw_text = call_groq_with_retry(api_key, prompt)
     cleaned = strip_code_fences(raw_text)
 
     try:
         posts = json.loads(cleaned)
     except json.JSONDecodeError as e:
-        print(f"[content_agent] ERROR: could not parse Gemini's JSON response: {e}")
+        print(f"[content_agent] ERROR: could not parse Groq's JSON response: {e}")
         print("[content_agent] raw response was:")
         print(raw_text)
         sys.exit(1)
 
     if not isinstance(posts, list) or len(posts) == 0:
-        print("[content_agent] ERROR: Gemini did not return a non-empty list of posts.")
+        print("[content_agent] ERROR: Groq did not return a non-empty list of posts.")
         sys.exit(1)
 
     posts = posts[:MAX_POSTS]
