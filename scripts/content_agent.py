@@ -34,6 +34,7 @@ GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 MODEL_NAME = "openai/gpt-oss-120b"
 MIN_POSTS = 2
 MAX_POSTS = 8
+MAX_CANDIDATES = 40
 HISTORY_FILE = "data/history.json"
 OUTPUT_FILE = "data/posts_today.json"
 HISTORY_MAX_ENTRIES = 300
@@ -280,7 +281,7 @@ def main():
         print("[content_agent] ERROR: no candidate headlines fetched from RSS. Exiting.")
         sys.exit(1)
     print(f"[content_agent] {len(candidates)} unique candidate headlines gathered.")
-    candidates = candidates[:40]
+    candidates = candidates[:MAX_CANDIDATES]
 
     prompt = build_prompt(history, candidates)
 
