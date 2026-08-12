@@ -249,7 +249,7 @@ def call_groq_with_retry(api_key, prompt, max_retries=2):
     payload = {
         "model": MODEL_NAME,
         "messages": [{"role": "user", "content": prompt}],
-        "max_completion_tokens": 8000,
+        "max_completion_tokens": 3000,
         "reasoning_effort": "low",
     }
     for attempt in range(max_retries + 1):
