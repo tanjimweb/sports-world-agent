@@ -166,7 +166,7 @@ def save_history(history):
 
 def build_prompt(history, candidates):
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    recent_titles = [h.get("headline", "") for h in history[-60:]]
+    recent_titles = [h.get("headline", "") for h in history[-25:]]
     history_block = "\n".join(f"- {t}" for t in recent_titles) if recent_titles else "(none yet)"
 
     candidates_block = "\n".join(
