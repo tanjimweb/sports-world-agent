@@ -2,56 +2,27 @@
   {
     "image": "post_1.jpg",
     "template": "A",
-    "sport": "Multi‑Sport",
-    "category": "Medal Tally Release",
-    "headline": "Olympics.com publishes India’s full medal tally and winners list for the 2026 Commonwealth Games, detailing the number of gold, silver and bronze medals secured across all disciplines.",
-    "highlight_phrase": "India’s full medal tally",
+    "sport": "Multiple",
+    "category": "Medal Tally Overview",
+    "headline": "Olympics.com publishes the full India medals tally and winners list for the 2026 Commonwealth Games, outlining the nation's gold, silver and bronze achievements across all disciplines.",
+    "highlight_phrase": "India medals tally and winners list",
     "footer_text": "Commonwealth Games 2026",
     "source_names": [
       "olympics.com"
     ],
-    "table_rows": [],
-    "telegram_sent": true
+    "table_rows": []
   },
   {
     "image": "post_2.jpg",
     "template": "A",
-    "sport": "Administration",
-    "category": "Olympic Bid Push",
-    "headline": "Sports Minister Mansukh Mandaviya reiterated India’s aggressive strategy to host the 2036 Olympic Games, outlining new infrastructure projects and international lobbying efforts in a recent press briefing.",
-    "highlight_phrase": "host the 2036 Olympic Games",
-    "footer_text": "Mandaviya statement",
+    "sport": "Badminton",
+    "category": "Team Selection Announcement",
+    "headline": "The Badminton Association of India announced the country's contingent for the 2026 Asian Games, featuring PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair as headline players.",
+    "highlight_phrase": "",
+    "footer_text": "Aichi‑Nagoya, Japan",
     "source_names": [
-      "NDTV Sports"
+      "facebook.com"
     ],
-    "table_rows": [],
-    "telegram_sent": true
-  },
-  {
-    "image": "post_3.jpg",
-    "template": "C",
-    "sport": "Athletics",
-    "category": "Record Holders",
-    "headline": "Olympics.com highlights India’s top track‑and‑field record holders, showcasing athletes who currently own national marks in events such as javelin, 800 m and long jump.",
-    "highlight_phrase": "India’s top track‑and‑field record holders",
-    "footer_text": "National records list",
-    "source_names": [
-      "olympics.com"
-    ],
-    "table_rows": [
-      [
-        "Javelin",
-        "Neeraj Chopra"
-      ],
-      [
-        "800 m Women",
-        "Parul Chaudhary"
-      ],
-      [
-        "Long Jump Men",
-        "Mohan Kumar"
-      ]
-    ],
-    "telegram_sent": true
+    "table_rows": []
   }
 ]
