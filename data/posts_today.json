@@ -1,62 +1,51 @@
 [
   {
-    "sport": "Multi-sport",
-    "category": "Olympic Bid Announcement",
+    "sport": "Multi‑Sport",
+    "category": "Medal Tally Release",
     "template": "A",
-    "headline": "Sports Minister Mansukh Mandaviya highlighted India's aggressive push to host the 2036 Olympic Games, outlining key infrastructure plans and international lobbying efforts in a recent statement.",
-    "highlight_phrase": "push to host the 2036 Olympic Games",
-    "footer_text": "Mandaviya, 2026",
+    "headline": "Olympics.com publishes India’s full medal tally and winners list for the 2026 Commonwealth Games, detailing the number of gold, silver and bronze medals secured across all disciplines.",
+    "highlight_phrase": "India’s full medal tally",
+    "footer_text": "Commonwealth Games 2026",
+    "source_names": [
+      "olympics.com"
+    ],
+    "table_rows": []
+  },
+  {
+    "sport": "Administration",
+    "category": "Olympic Bid Push",
+    "template": "A",
+    "headline": "Sports Minister Mansukh Mandaviya reiterated India’s aggressive strategy to host the 2036 Olympic Games, outlining new infrastructure projects and international lobbying efforts in a recent press briefing.",
+    "highlight_phrase": "host the 2036 Olympic Games",
+    "footer_text": "Mandaviya statement",
     "source_names": [
       "NDTV Sports"
     ],
     "table_rows": []
   },
   {
-    "sport": "Badminton",
-    "category": "Asian Games Squad Announcement",
-    "template": "A",
-    "headline": "The Badminton Association of India released the official 2026 Asian Games contingent, featuring PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair as headline players for the Aichi‑Nagoya event.",
-    "highlight_phrase": "PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair",
-    "footer_text": "BAI announcement",
-    "source_names": [
-      "facebook.com"
-    ],
-    "table_rows": []
-  },
-  {
-    "sport": "Yoga / Multi-sport",
-    "category": "Yoga Inclusion Bid",
-    "template": "A",
-    "headline": "Inside Yogasana detailed India's strategic bid to integrate yoga as a core discipline in upcoming Commonwealth Games and Olympic programmes, citing cultural heritage and global popularity.",
-    "highlight_phrase": "integrate yoga as a core discipline",
-    "footer_text": "Yogasana, 2026",
-    "source_names": [
-      "indiatoday.in"
-    ],
-    "table_rows": []
-  },
-  {
-    "sport": "Cricket",
-    "category": "Bowler Workload Concern",
-    "template": "A",
-    "headline": "Jasprit Bumrah's heavy workload ahead of the season has sparked fresh questions regarding Indian team management and player rotation strategies, according to recent expert analysis.",
-    "highlight_phrase": "Jasprit Bumrah's heavy workload",
-    "footer_text": "Management review",
-    "source_names": [
-      "News18"
-    ],
-    "table_rows": []
-  },
-  {
     "sport": "Athletics",
-    "category": "Athlete of the Year Awards",
-    "template": "B",
-    "headline": "Neeraj Chopra and Parul Chaudhary were crowned Best Male and Female Athletes at the inaugural Indian Athletics Awards, recognizing their stellar performances across the 2025‑2026 season.",
-    "highlight_phrase": "crowned Best Male and Female Athletes",
-    "footer_text": "Inaugural IAA",
+    "category": "Record Holders",
+    "template": "C",
+    "headline": "Olympics.com highlights India’s top track‑and‑field record holders, showcasing athletes who currently own national marks in events such as javelin, 800 m and long jump.",
+    "highlight_phrase": "India’s top track‑and‑field record holders",
+    "footer_text": "National records list",
     "source_names": [
-      "outlookindia.com"
+      "olympics.com"
     ],
-    "table_rows": []
+    "table_rows": [
+      [
+        "Javelin",
+        "Neeraj Chopra"
+      ],
+      [
+        "800 m Women",
+        "Parul Chaudhary"
+      ],
+      [
+        "Long Jump Men",
+        "Mohan Kumar"
+      ]
+    ]
   }
 ]
