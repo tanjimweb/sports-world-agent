@@ -1,0 +1,63 @@
+[
+  {
+    "sport": "Athletics",
+    "category": "Silver Medal Win",
+    "template": "B",
+    "headline": "Gulveer Singh and Harjinder Kaur each secured silver medals for India on Day 5 of the Commonwealth Games 2026, boosting the nation’s tally.",
+    "highlight_phrase": "silver medals",
+    "footer_text": "Day 5, CWG 2026",
+    "source_names": [
+      "olympics.com"
+    ],
+    "table_rows": []
+  },
+  {
+    "sport": "Swimming",
+    "category": "National Record",
+    "template": "C",
+    "headline": "Teen swimmer Anushka Yadav, a farmer’s daughter, set a new Indian national record, becoming the youngest ever holder of a national athletics mark.",
+    "highlight_phrase": "",
+    "footer_text": "Age: teen",
+    "source_names": [
+      "The Times of India"
+    ],
+    "table_rows": [
+      [
+        "Event",
+        "Swimming"
+      ],
+      [
+        "Record",
+        "National"
+      ],
+      [
+        "Age",
+        "Youngest"
+      ]
+    ]
+  },
+  {
+    "sport": "Athletics",
+    "category": "Athlete of the Year Award",
+    "template": "A",
+    "headline": "Neeraj Chopra was named Best Male Athlete at the Indian Athletics Awards 2025, recognized as the nation’s top male track‑and‑field star.",
+    "highlight_phrase": "Best Male Athlete",
+    "footer_text": "Awards 2025",
+    "source_names": [
+      "olympics.com"
+    ],
+    "table_rows": []
+  },
+  {
+    "sport": "General",
+    "category": "Olympic Bid Announcement",
+    "template": "A",
+    "headline": "Sports Minister Mansukh Mandaviya emphasized India’s ambition to host the 2036 Olympic Games, outlining the country’s strategic push in the upcoming years.",
+    "highlight_phrase": "host the 2036 Olympic Games",
+    "footer_text": "Mandaviya, 2026",
+    "source_names": [
+      "NDTV Sports"
+    ],
+    "table_rows": []
+  }
+]
