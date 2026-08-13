@@ -1,23 +1,11 @@
 [
   {
-    "sport": "Cricket",
-    "category": "Olympic Qualification",
-    "template": "B",
-    "headline": "The Indian women’s cricket team secured qualification for the Los Angeles 2028 Olympics after a decisive series win, confirming their spot at the upcoming Games.",
-    "highlight_phrase": "",
-    "footer_text": "Women’s team – qualified",
-    "source_names": [
-      "News On AIR"
-    ],
-    "table_rows": []
-  },
-  {
-    "sport": "General",
-    "category": "Olympic Bid Push",
+    "sport": "Administration",
+    "category": "Olympic Bid Announcement",
     "template": "A",
-    "headline": "Sports Minister Mansukh Mandaviya highlighted India’s ambition to host the 2036 Olympic Games, outlining strategic steps and infrastructure plans to win the bid.",
-    "highlight_phrase": "",
-    "footer_text": "Mandaviya’s vision",
+    "headline": "Sports Minister Mansukh Mandaviya emphasized India’s ambition to host the 2036 Olympic Games, outlining strategic steps and infrastructure plans to win the bid.",
+    "highlight_phrase": "host the 2036 Olympic Games",
+    "footer_text": "Mandaviya, 2026",
     "source_names": [
       "NDTV Sports"
     ],
@@ -25,27 +13,47 @@
   },
   {
     "sport": "Cricket",
-    "category": "Series Confirmation",
-    "template": "A",
-    "headline": "The Board of Control for Cricket in India confirmed a three‑match T20I series against Afghanistan to be played in Delhi ahead of the Asian Games schedule.",
-    "highlight_phrase": "",
-    "footer_text": "Series set for 2026",
+    "category": "Olympic Qualification",
+    "template": "B",
+    "headline": "India women’s cricket team secured a spot for the Los Angeles 2028 Olympics after winning the qualifying series, confirming their participation at the upcoming Games.",
+    "highlight_phrase": "secured a spot for the Los Angeles 2028 Olympics",
+    "footer_text": "Qualified, 2026",
     "source_names": [
-      "The Times of India",
-      "BCCI"
+      "News On AIR"
+    ],
+    "table_rows": []
+  },
+  {
+    "sport": "Badminton",
+    "category": "Squad Announcement",
+    "template": "A",
+    "headline": "The Badminton Association of India announced its 2026 Asian Games contingent, featuring PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair heading to Aichi‑Nagoya.",
+    "highlight_phrase": "announced its 2026 Asian Games contingent",
+    "footer_text": "Sindhu, Sen, Satwik‑Chirag",
+    "source_names": [
+      "facebook.com"
     ],
     "table_rows": []
   },
   {
     "sport": "Athletics",
-    "category": "Athlete of the Year",
-    "template": "B",
-    "headline": "At the Indian Athletics Awards 2026, javelin star Neeraj Chopra and 800m runner Parul Chaudhary were crowned Athletes of the Year for their outstanding performances.",
-    "highlight_phrase": "",
-    "footer_text": "Awards 2026",
+    "category": "National Records",
+    "template": "C",
+    "headline": "Indian athletics saw a surge with 20 new national records set over three months, highlighting the sport’s rapid development and rising talent across multiple disciplines.",
+    "highlight_phrase": "20 new national records",
+    "footer_text": "20 records, 3 months",
     "source_names": [
-      "Outlook India"
+      "The Indian Express"
     ],
-    "table_rows": []
+    "table_rows": [
+      [
+        "New Records",
+        "20"
+      ],
+      [
+        "Period",
+        "Three months"
+      ]
+    ]
   }
 ]
