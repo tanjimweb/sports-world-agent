@@ -1,10 +1,10 @@
 [
   {
-    "sport": "Administration",
+    "sport": "Multi-sport",
     "category": "Olympic Bid Announcement",
     "template": "A",
-    "headline": "Sports Minister Mansukh Mandaviya emphasized India’s ambition to host the 2036 Olympic Games, outlining strategic steps and infrastructure plans to win the bid.",
-    "highlight_phrase": "host the 2036 Olympic Games",
+    "headline": "Sports Minister Mansukh Mandaviya highlighted India's aggressive push to host the 2036 Olympic Games, outlining key infrastructure plans and international lobbying efforts in a recent statement.",
+    "highlight_phrase": "push to host the 2036 Olympic Games",
     "footer_text": "Mandaviya, 2026",
     "source_names": [
       "NDTV Sports"
@@ -12,48 +12,51 @@
     "table_rows": []
   },
   {
-    "sport": "Cricket",
-    "category": "Olympic Qualification",
-    "template": "B",
-    "headline": "India women’s cricket team secured a spot for the Los Angeles 2028 Olympics after winning the qualifying series, confirming their participation at the upcoming Games.",
-    "highlight_phrase": "secured a spot for the Los Angeles 2028 Olympics",
-    "footer_text": "Qualified, 2026",
-    "source_names": [
-      "News On AIR"
-    ],
-    "table_rows": []
-  },
-  {
     "sport": "Badminton",
-    "category": "Squad Announcement",
+    "category": "Asian Games Squad Announcement",
     "template": "A",
-    "headline": "The Badminton Association of India announced its 2026 Asian Games contingent, featuring PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair heading to Aichi‑Nagoya.",
-    "highlight_phrase": "announced its 2026 Asian Games contingent",
-    "footer_text": "Sindhu, Sen, Satwik‑Chirag",
+    "headline": "The Badminton Association of India released the official 2026 Asian Games contingent, featuring PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair as headline players for the Aichi‑Nagoya event.",
+    "highlight_phrase": "PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair",
+    "footer_text": "BAI announcement",
     "source_names": [
       "facebook.com"
     ],
     "table_rows": []
   },
   {
-    "sport": "Athletics",
-    "category": "National Records",
-    "template": "C",
-    "headline": "Indian athletics saw a surge with 20 new national records set over three months, highlighting the sport’s rapid development and rising talent across multiple disciplines.",
-    "highlight_phrase": "20 new national records",
-    "footer_text": "20 records, 3 months",
+    "sport": "Yoga / Multi-sport",
+    "category": "Yoga Inclusion Bid",
+    "template": "A",
+    "headline": "Inside Yogasana detailed India's strategic bid to integrate yoga as a core discipline in upcoming Commonwealth Games and Olympic programmes, citing cultural heritage and global popularity.",
+    "highlight_phrase": "integrate yoga as a core discipline",
+    "footer_text": "Yogasana, 2026",
     "source_names": [
-      "The Indian Express"
+      "indiatoday.in"
     ],
-    "table_rows": [
-      [
-        "New Records",
-        "20"
-      ],
-      [
-        "Period",
-        "Three months"
-      ]
-    ]
+    "table_rows": []
+  },
+  {
+    "sport": "Cricket",
+    "category": "Bowler Workload Concern",
+    "template": "A",
+    "headline": "Jasprit Bumrah's heavy workload ahead of the season has sparked fresh questions regarding Indian team management and player rotation strategies, according to recent expert analysis.",
+    "highlight_phrase": "Jasprit Bumrah's heavy workload",
+    "footer_text": "Management review",
+    "source_names": [
+      "News18"
+    ],
+    "table_rows": []
+  },
+  {
+    "sport": "Athletics",
+    "category": "Athlete of the Year Awards",
+    "template": "B",
+    "headline": "Neeraj Chopra and Parul Chaudhary were crowned Best Male and Female Athletes at the inaugural Indian Athletics Awards, recognizing their stellar performances across the 2025‑2026 season.",
+    "highlight_phrase": "crowned Best Male and Female Athletes",
+    "footer_text": "Inaugural IAA",
+    "source_names": [
+      "outlookindia.com"
+    ],
+    "table_rows": []
   }
 ]
