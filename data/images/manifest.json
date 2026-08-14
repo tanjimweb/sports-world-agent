@@ -1,63 +1,30 @@
 [
   {
     "image": "post_1.jpg",
-    "template": "A",
-    "sport": "Badminton",
-    "category": "Team Selection Announcement",
-    "headline": "The Badminton Association of India announced India's contingent for the 2026 Asian Games, starring PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair as the flagship athletes.",
-    "highlight_phrase": "",
-    "footer_text": "Aichi‑Nagoya, Japan",
-    "source_names": [
-      "facebook.com"
-    ],
-    "table_rows": []
-  },
-  {
-    "image": "post_2.jpg",
     "template": "B",
     "sport": "Cricket",
     "category": "Olympic Qualification",
-    "headline": "India women's cricket team clinched qualification for the Los Angeles 2028 Olympics after winning the decisive series, securing the nation's spot at the upcoming Games.",
-    "highlight_phrase": "",
-    "footer_text": "Series win",
+    "headline": "The India women's cricket team secured a spot for the Los Angeles 2028 Olympics after winning the decisive qualification series, confirming the nation's participation in the upcoming Games.",
+    "highlight_phrase": "secured a spot",
+    "footer_text": "Qualification series win",
     "source_names": [
       "Newsonair"
     ],
-    "table_rows": []
+    "table_rows": [],
+    "telegram_sent": true
   },
   {
-    "image": "post_3.jpg",
-    "template": "E",
-    "sport": "Athletics",
-    "category": "Athlete Death",
-    "headline": "Balwinder Dhaliwal, the celebrated Asian Games shot put champion, has died at the age of 67, leaving a lasting legacy in Indian athletics.",
-    "highlight_phrase": "",
-    "footer_text": "Legend passes",
+    "image": "post_2.jpg",
+    "template": "A",
+    "sport": "General",
+    "category": "Hosting Announcement",
+    "headline": "Sports Minister Mansukh Mandaviya highlighted India's aggressive push to host the 2036 Olympic Games, outlining new infrastructure projects and international lobbying efforts in a recent press briefing.",
+    "highlight_phrase": "push to host the 2036 Olympic Games",
+    "footer_text": "Minister Mandaviya briefing",
     "source_names": [
-      "GK Today"
+      "NDTV Sports"
     ],
-    "table_rows": []
-  },
-  {
-    "image": "post_4.jpg",
-    "template": "C",
-    "sport": "Athletics",
-    "category": "National Record",
-    "headline": "Farmer’s daughter Anushka Yadav shattered a national record, becoming the youngest Indian athlete ever to set a track‑and‑field mark.",
-    "highlight_phrase": "",
-    "footer_text": "Record breakthrough",
-    "source_names": [
-      "The Times of India"
-    ],
-    "table_rows": [
-      [
-        "Record Type",
-        "National"
-      ],
-      [
-        "Age",
-        "Youngest"
-      ]
-    ]
+    "table_rows": [],
+    "telegram_sent": true
   }
 ]
