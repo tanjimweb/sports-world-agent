@@ -1,71 +1,63 @@
 [
   {
     "image": "post_1.jpg",
+    "template": "A",
+    "sport": "Badminton",
+    "category": "Team Selection Announcement",
+    "headline": "The Badminton Association of India announced India's contingent for the 2026 Asian Games, starring PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair as the flagship athletes.",
+    "highlight_phrase": "",
+    "footer_text": "Aichi‑Nagoya, Japan",
+    "source_names": [
+      "facebook.com"
+    ],
+    "table_rows": []
+  },
+  {
+    "image": "post_2.jpg",
+    "template": "B",
+    "sport": "Cricket",
+    "category": "Olympic Qualification",
+    "headline": "India women's cricket team clinched qualification for the Los Angeles 2028 Olympics after winning the decisive series, securing the nation's spot at the upcoming Games.",
+    "highlight_phrase": "",
+    "footer_text": "Series win",
+    "source_names": [
+      "Newsonair"
+    ],
+    "table_rows": []
+  },
+  {
+    "image": "post_3.jpg",
+    "template": "E",
+    "sport": "Athletics",
+    "category": "Athlete Death",
+    "headline": "Balwinder Dhaliwal, the celebrated Asian Games shot put champion, has died at the age of 67, leaving a lasting legacy in Indian athletics.",
+    "highlight_phrase": "",
+    "footer_text": "Legend passes",
+    "source_names": [
+      "GK Today"
+    ],
+    "table_rows": []
+  },
+  {
+    "image": "post_4.jpg",
     "template": "C",
     "sport": "Athletics",
     "category": "National Record",
-    "headline": "Anushka Yadav, a farmer's daughter, becomes India's youngest athlete to set a national record, marking a historic milestone in the country's track and field history.",
-    "highlight_phrase": "youngest athlete to set a national record",
-    "footer_text": "Anushka Yadav, new record holder",
+    "headline": "Farmer’s daughter Anushka Yadav shattered a national record, becoming the youngest Indian athlete ever to set a track‑and‑field mark.",
+    "highlight_phrase": "",
+    "footer_text": "Record breakthrough",
     "source_names": [
       "The Times of India"
     ],
     "table_rows": [
       [
+        "Record Type",
+        "National"
+      ],
+      [
         "Age",
-        "Youngest ever"
-      ],
-      [
-        "Achievement",
-        "National record"
-      ],
-      [
-        "Discipline",
-        "Athletics"
+        "Youngest"
       ]
-    ],
-    "telegram_sent": true
-  },
-  {
-    "image": "post_2.jpg",
-    "template": "A",
-    "sport": "Athletics",
-    "category": "Best Male Athlete Award",
-    "headline": "Neeraj Chopra was honoured as the Best Male Athlete at the Indian Athletics Awards 2025, recognizing his outstanding performances in javelin over the past year.",
-    "highlight_phrase": "Best Male Athlete",
-    "footer_text": "Neeraj Chopra, awardee",
-    "source_names": [
-      "olympics.com"
-    ],
-    "table_rows": [],
-    "telegram_sent": true
-  },
-  {
-    "image": "post_3.jpg",
-    "template": "B",
-    "sport": "Cricket",
-    "category": "Olympic Qualification",
-    "headline": "The India women’s cricket team secured qualification for the Los Angeles 2028 Olympics after winning the decisive series, confirming their spot at the upcoming Games.",
-    "highlight_phrase": "",
-    "footer_text": "Women’s team secured berth",
-    "source_names": [
-      "Newsonair"
-    ],
-    "table_rows": [],
-    "telegram_sent": true
-  },
-  {
-    "image": "post_4.jpg",
-    "template": "A",
-    "sport": "Badminton",
-    "category": "Asian Games Squad Announcement",
-    "headline": "The Badminton Association of India announced its 2026 Asian Games contingent, featuring stars PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair as headline players for Aichi‑Nagoya.",
-    "highlight_phrase": "announced its 2026 Asian Games contingent",
-    "footer_text": "Sindhu, Sen lead squad",
-    "source_names": [
-      "facebook.com"
-    ],
-    "table_rows": [],
-    "telegram_sent": true
+    ]
   }
 ]
