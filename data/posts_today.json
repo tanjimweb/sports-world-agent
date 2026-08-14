@@ -1,35 +1,40 @@
 [
   {
     "sport": "Multiple",
-    "category": "Medal Tally Overview",
-    "template": "A",
-    "headline": "Olympics.com publishes the full India medals tally and winners list for the 2026 Commonwealth Games, outlining the nation's gold, silver and bronze achievements across all disciplines.",
-    "highlight_phrase": "India medals tally and winners list",
-    "footer_text": "Commonwealth Games 2026",
+    "category": "Medal Tally",
+    "template": "D",
+    "headline": "India tops expectations at the 2026 Commonwealth Games, securing 39 medals across disciplines, surpassing pre‑event forecasts.",
+    "highlight_phrase": "39 medals",
+    "footer_text": "CWG 2026",
     "source_names": [
-      "olympics.com"
+      "Rediff"
     ],
-    "table_rows": []
+    "table_rows": [
+      [
+        "Total",
+        "39"
+      ]
+    ]
   },
   {
-    "sport": "Badminton",
-    "category": "Team Selection Announcement",
-    "template": "A",
-    "headline": "The Badminton Association of India announced the country's contingent for the 2026 Asian Games, featuring PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair as headline players.",
-    "highlight_phrase": "",
-    "footer_text": "Aichi‑Nagoya, Japan",
+    "sport": "Athletics",
+    "category": "Athlete Death",
+    "template": "E",
+    "headline": "Asian Games shot put champion Balwinder Dhaliwal, 67, passes away, leaving a legacy in Indian athletics.",
+    "highlight_phrase": "Balwinder Dhaliwal, 67",
+    "footer_text": "June 2026",
     "source_names": [
-      "facebook.com"
+      "GK Today"
     ],
     "table_rows": []
   },
   {
     "sport": "Shooting",
-    "category": "Historic Reflection",
-    "template": "F",
-    "headline": "Abhinav Bindra looks back on his historic Olympic gold from 18 years ago, describing it as the biggest peak of his sporting life in a reflective interview.",
-    "highlight_phrase": "historic Olympic gold",
-    "footer_text": "Interview, 2026",
+    "category": "Athlete Reflection",
+    "template": "A",
+    "headline": "Former Olympic gold medallist Abhinav Bindra looks back on his 2008 triumph, calling it the biggest peak of his sporting life, 18 years later.",
+    "highlight_phrase": "",
+    "footer_text": "Interview",
     "source_names": [
       "The Times of India"
     ],
