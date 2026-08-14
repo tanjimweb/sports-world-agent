@@ -1,68 +1,60 @@
 [
   {
     "sport": "Athletics",
-    "category": "Silver Medal Winners",
-    "template": "B",
-    "headline": "Gulveer Singh and Harjinder Kaur added silver medals for India on Day 5 of the 2026 Commonwealth Games, boosting the nation’s tally in athletics events.",
-    "highlight_phrase": "added silver medals",
-    "footer_text": "Day 5, CWG 2026",
+    "category": "National Record",
+    "template": "C",
+    "headline": "Anushka Yadav, a farmer's daughter, becomes India's youngest athlete to set a national record, marking a historic milestone in the country's track and field history.",
+    "highlight_phrase": "youngest athlete to set a national record",
+    "footer_text": "Anushka Yadav, new record holder",
+    "source_names": [
+      "The Times of India"
+    ],
+    "table_rows": [
+      [
+        "Age",
+        "Youngest ever"
+      ],
+      [
+        "Achievement",
+        "National record"
+      ],
+      [
+        "Discipline",
+        "Athletics"
+      ]
+    ]
+  },
+  {
+    "sport": "Athletics",
+    "category": "Best Male Athlete Award",
+    "template": "A",
+    "headline": "Neeraj Chopra was honoured as the Best Male Athlete at the Indian Athletics Awards 2025, recognizing his outstanding performances in javelin over the past year.",
+    "highlight_phrase": "Best Male Athlete",
+    "footer_text": "Neeraj Chopra, awardee",
     "source_names": [
       "olympics.com"
     ],
     "table_rows": []
   },
   {
-    "sport": "Multi‑sport",
-    "category": "Medal Tally",
-    "template": "D",
-    "headline": "India’s overall medal tally at the 2026 Commonwealth Games reached 39 medals, surpassing pre‑event expectations and placing the country among the top‑ranked nations.",
-    "highlight_phrase": "reached 39 medals",
-    "footer_text": "CWG 2026",
-    "source_names": [
-      "Rediff"
-    ],
-    "table_rows": [
-      [
-        "Total Medals",
-        "39"
-      ],
-      [
-        "Rank",
-        "Top 5"
-      ]
-    ]
-  },
-  {
     "sport": "Cricket",
     "category": "Olympic Qualification",
-    "template": "A",
-    "headline": "The Indian women’s cricket team secured its berth for the Los Angeles 2028 Olympics after winning the qualification series, confirming India’s place at the upcoming Games.",
-    "highlight_phrase": "secured its berth",
-    "footer_text": "Qualifiers win",
+    "template": "B",
+    "headline": "The India women’s cricket team secured qualification for the Los Angeles 2028 Olympics after winning the decisive series, confirming their spot at the upcoming Games.",
+    "highlight_phrase": "",
+    "footer_text": "Women’s team secured berth",
     "source_names": [
-      "News On AIR"
-    ],
-    "table_rows": []
-  },
-  {
-    "sport": "Administration",
-    "category": "Olympic Bid Announcement",
-    "template": "A",
-    "headline": "Sports Minister Mansukh Mandaviya highlighted India’s aggressive push to host the 2036 Olympic Games, outlining new infrastructure projects and international lobbying efforts.",
-    "highlight_phrase": "push to host the 2036 Olympic Games",
-    "footer_text": "Mandaviya briefing",
-    "source_names": [
-      "sports.ndtv.com"
+      "Newsonair"
     ],
     "table_rows": []
   },
   {
     "sport": "Badminton",
-    "category": "Team Selection",
+    "category": "Asian Games Squad Announcement",
     "template": "A",
-    "headline": "The Badminton Association of India released its 2026 Asian Games squad, featuring PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair as headline players for the event in Aichi‑Nagoya.",
-    "highlight_phrase": "released its 2026 Asian Games squad",
-    "footer_text": "BAI announcement",
+    "headline": "The Badminton Association of India announced its 2026 Asian Games contingent, featuring stars PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair as headline players for Aichi‑Nagoya.",
+    "highlight_phrase": "announced its 2026 Asian Games contingent",
+    "footer_text": "Sindhu, Sen lead squad",
     "source_names": [
       "facebook.com"
     ],
