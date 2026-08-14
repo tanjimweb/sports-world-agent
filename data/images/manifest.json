@@ -1,30 +1,67 @@
 [
   {
     "image": "post_1.jpg",
-    "template": "B",
+    "template": "A",
     "sport": "Cricket",
-    "category": "Olympic Qualification",
-    "headline": "The India women's cricket team secured a spot for the Los Angeles 2028 Olympics after winning the decisive qualification series, confirming the nation's participation in the upcoming Games.",
-    "highlight_phrase": "secured a spot",
-    "footer_text": "Qualification series win",
+    "category": "Award Pending",
+    "headline": "Former India cricket great still awaits his Padma Shri honour 53 years after his contributions were first announced, highlighting a long‑standing delay in recognition for the legend.",
+    "highlight_phrase": "still awaits his Padma Shri honour",
+    "footer_text": "53‑year wait",
     "source_names": [
-      "Newsonair"
+      "News18"
     ],
-    "table_rows": [],
-    "telegram_sent": true
+    "table_rows": []
   },
   {
     "image": "post_2.jpg",
     "template": "A",
-    "sport": "General",
-    "category": "Hosting Announcement",
-    "headline": "Sports Minister Mansukh Mandaviya highlighted India's aggressive push to host the 2036 Olympic Games, outlining new infrastructure projects and international lobbying efforts in a recent press briefing.",
-    "highlight_phrase": "push to host the 2036 Olympic Games",
-    "footer_text": "Minister Mandaviya briefing",
+    "sport": "Cricket",
+    "category": "Injury Update",
+    "headline": "Star batter Jemimah Rodrigues ruled out of the Women’s Asia Cup and Asian Games as the BCCI announces a replacement, dealing a major blow to India’s batting line‑up.",
+    "highlight_phrase": "ruled out of the Women’s Asia Cup",
+    "footer_text": "BCCI names replacement",
     "source_names": [
       "NDTV Sports"
     ],
-    "table_rows": [],
-    "telegram_sent": true
+    "table_rows": []
+  },
+  {
+    "image": "post_3.jpg",
+    "template": "A",
+    "sport": "Cricket",
+    "category": "Leadership Spotlight",
+    "headline": "Shubman Gill’s captaincy has unleashed his full potential, propelling him into an elite Test batting list where only Don Bradman previously appeared, according to NDTV Sports analysis.",
+    "highlight_phrase": "",
+    "footer_text": "Gill joins elite list",
+    "source_names": [
+      "NDTV Sports"
+    ],
+    "table_rows": []
+  },
+  {
+    "image": "post_4.jpg",
+    "template": "A",
+    "sport": "Cricket",
+    "category": "Administrative Appointment",
+    "headline": "Former Indian batting maestro VVS Laxman is set to join the BCCI as Director of Cricket, bringing his extensive experience to the board’s strategic planning and talent development.",
+    "highlight_phrase": "",
+    "footer_text": "New BCCI director",
+    "source_names": [
+      "newslivetv.com"
+    ],
+    "table_rows": []
+  },
+  {
+    "image": "post_5.jpg",
+    "template": "A",
+    "sport": "Athletics",
+    "category": "Birthday Celebration",
+    "headline": "Happy birthday to Neeraj Chopra, India’s javelin legend, celebrating his record‑breaking career, multiple gold medals and his status as the nation’s premier track‑and‑field icon.",
+    "highlight_phrase": "",
+    "footer_text": "Javelin icon",
+    "source_names": [
+      "WION"
+    ],
+    "table_rows": []
   }
 ]
