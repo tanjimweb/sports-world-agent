@@ -1,49 +1,76 @@
 [
   {
     "image": "post_1.jpg",
+    "template": "B",
+    "sport": "Athletics",
+    "category": "Silver Medal Winners",
+    "headline": "Gulveer Singh and Harjinder Kaur added silver medals for India on Day 5 of the 2026 Commonwealth Games, boosting the nation’s tally in athletics events.",
+    "highlight_phrase": "added silver medals",
+    "footer_text": "Day 5, CWG 2026",
+    "source_names": [
+      "olympics.com"
+    ],
+    "table_rows": []
+  },
+  {
+    "image": "post_2.jpg",
     "template": "D",
-    "sport": "Multiple",
+    "sport": "Multi‑sport",
     "category": "Medal Tally",
-    "headline": "India tops expectations at the 2026 Commonwealth Games, securing 39 medals across disciplines, surpassing pre‑event forecasts.",
-    "highlight_phrase": "39 medals",
+    "headline": "India’s overall medal tally at the 2026 Commonwealth Games reached 39 medals, surpassing pre‑event expectations and placing the country among the top‑ranked nations.",
+    "highlight_phrase": "reached 39 medals",
     "footer_text": "CWG 2026",
     "source_names": [
       "Rediff"
     ],
     "table_rows": [
       [
-        "Total",
+        "Total Medals",
         "39"
+      ],
+      [
+        "Rank",
+        "Top 5"
       ]
-    ],
-    "telegram_sent": true
-  },
-  {
-    "image": "post_2.jpg",
-    "template": "E",
-    "sport": "Athletics",
-    "category": "Athlete Death",
-    "headline": "Asian Games shot put champion Balwinder Dhaliwal, 67, passes away, leaving a legacy in Indian athletics.",
-    "highlight_phrase": "Balwinder Dhaliwal, 67",
-    "footer_text": "June 2026",
-    "source_names": [
-      "GK Today"
-    ],
-    "table_rows": [],
-    "telegram_sent": true
+    ]
   },
   {
     "image": "post_3.jpg",
     "template": "A",
-    "sport": "Shooting",
-    "category": "Athlete Reflection",
-    "headline": "Former Olympic gold medallist Abhinav Bindra looks back on his 2008 triumph, calling it the biggest peak of his sporting life, 18 years later.",
-    "highlight_phrase": "",
-    "footer_text": "Interview",
+    "sport": "Cricket",
+    "category": "Olympic Qualification",
+    "headline": "The Indian women’s cricket team secured its berth for the Los Angeles 2028 Olympics after winning the qualification series, confirming India’s place at the upcoming Games.",
+    "highlight_phrase": "secured its berth",
+    "footer_text": "Qualifiers win",
     "source_names": [
-      "The Times of India"
+      "News On AIR"
     ],
-    "table_rows": [],
-    "telegram_sent": true
+    "table_rows": []
+  },
+  {
+    "image": "post_4.jpg",
+    "template": "A",
+    "sport": "Administration",
+    "category": "Olympic Bid Announcement",
+    "headline": "Sports Minister Mansukh Mandaviya highlighted India’s aggressive push to host the 2036 Olympic Games, outlining new infrastructure projects and international lobbying efforts.",
+    "highlight_phrase": "push to host the 2036 Olympic Games",
+    "footer_text": "Mandaviya briefing",
+    "source_names": [
+      "sports.ndtv.com"
+    ],
+    "table_rows": []
+  },
+  {
+    "image": "post_5.jpg",
+    "template": "A",
+    "sport": "Badminton",
+    "category": "Team Selection",
+    "headline": "The Badminton Association of India released its 2026 Asian Games squad, featuring PV Sindhu, Lakshya Sen and the Satwik‑Chirag pair as headline players for the event in Aichi‑Nagoya.",
+    "highlight_phrase": "released its 2026 Asian Games squad",
+    "footer_text": "BAI announcement",
+    "source_names": [
+      "facebook.com"
+    ],
+    "table_rows": []
   }
 ]
