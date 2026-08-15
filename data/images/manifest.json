@@ -1,41 +1,72 @@
 [
   {
     "image": "post_1.jpg",
-    "template": "E",
+    "template": "B",
     "sport": "Athletics",
-    "category": "Athlete Death",
-    "headline": "Asian Games champion shot putter Balwinder Dhaliwal has passed away at the age of 67, prompting tributes from the Indian athletics community and officials.",
-    "highlight_phrase": "",
-    "footer_text": "Dhaliwal, 67, died",
+    "category": "Medal Haul",
+    "headline": "India exceeded expectations at the 2026 Commonwealth Games in Glasgow, securing a total of 39 medals across athletics, shooting, wrestling and other disciplines.",
+    "highlight_phrase": "39 medals",
+    "footer_text": "Glasgow 2026",
     "source_names": [
-      "GK Today"
+      "Rediff"
     ],
-    "table_rows": []
+    "table_rows": [],
+    "telegram_sent": true
   },
   {
     "image": "post_2.jpg",
-    "template": "A",
+    "template": "B",
     "sport": "Multi-sport",
-    "category": "Major Event Announcement",
-    "headline": "India will host eleven major sporting events over the next six months, a strategic move aimed at strengthening the nation’s bid to stage the 2036 Olympic Games.",
+    "category": "Medal Haul",
+    "headline": "The official Commonwealth Games 2026 website publishes India's comprehensive medals tally and a complete list of gold, silver and bronze winners from Glasgow.",
     "highlight_phrase": "",
-    "footer_text": "11 events, 6 months",
+    "footer_text": "Glasgow",
     "source_names": [
-      "The Times of India"
+      "olympics.com"
     ],
-    "table_rows": []
+    "table_rows": [],
+    "telegram_sent": true
   },
   {
     "image": "post_3.jpg",
     "template": "A",
-    "sport": "Multi-sport",
-    "category": "Medal Tally Overview",
-    "headline": "The official Commonwealth Games 2026 website publishes India’s comprehensive medals tally, listing all gold, silver and bronze medals won by Indian athletes in Glasgow.",
-    "highlight_phrase": "India’s comprehensive medals tally",
-    "footer_text": "CG 2026 tally released",
+    "sport": "All Sports",
+    "category": "Sports Initiative",
+    "headline": "Prime Minister Narendra Modi announced a nationwide talent hunt for children aged 5‑15, aiming to build a pipeline of athletes for the 2036 Olympic Games.",
+    "highlight_phrase": "nationwide talent hunt",
+    "footer_text": "2036 Olympics",
     "source_names": [
-      "olympics.com"
+      "The Times of India"
     ],
-    "table_rows": []
+    "table_rows": [],
+    "telegram_sent": true
+  },
+  {
+    "image": "post_4.jpg",
+    "template": "A",
+    "sport": "All Sports",
+    "category": "Olympic Bid Push",
+    "headline": "Sports Minister Mansukh Mandaviya highlighted India's aggressive push to host the 2036 Olympic Games, outlining new infrastructure plans and diplomatic outreach.",
+    "highlight_phrase": "",
+    "footer_text": "Mansukh Mandaviya",
+    "source_names": [
+      "NDTV Sports"
+    ],
+    "table_rows": [],
+    "telegram_sent": true
+  },
+  {
+    "image": "post_5.jpg",
+    "template": "A",
+    "sport": "All Sports",
+    "category": "Strategic Outlook",
+    "headline": "AP News reports that India is shifting focus from cricket dominance to broader Olympic ambitions, mapping a strategic play on the global sports stage.",
+    "highlight_phrase": "Olympic ambitions",
+    "footer_text": "AP News",
+    "source_names": [
+      "AP News"
+    ],
+    "table_rows": [],
+    "telegram_sent": true
   }
 ]
