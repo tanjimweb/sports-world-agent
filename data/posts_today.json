@@ -1,61 +1,37 @@
 [
   {
-    "sport": "Athletics",
-    "category": "Medal Haul",
+    "sport": "Multi-sport",
+    "category": "Medal Tally",
     "template": "B",
-    "headline": "India exceeded expectations at the 2026 Commonwealth Games in Glasgow, securing a total of 39 medals across athletics, shooting, wrestling and other disciplines.",
-    "highlight_phrase": "39 medals",
-    "footer_text": "Glasgow 2026",
+    "headline": "India exceeded expectations at the 2026 Commonwealth Games in Glasgow, bringing home 39 medals across athletics, shooting, wrestling and more, marking a historic performance for the nation.",
+    "highlight_phrase": "",
+    "footer_text": "Glasgow, 2026",
     "source_names": [
       "Rediff"
     ],
     "table_rows": []
   },
   {
-    "sport": "Multi-sport",
-    "category": "Medal Haul",
+    "sport": "Cricket",
+    "category": "Olympic Qualification",
     "template": "B",
-    "headline": "The official Commonwealth Games 2026 website publishes India's comprehensive medals tally and a complete list of gold, silver and bronze winners from Glasgow.",
+    "headline": "The India women's cricket team secured a berth for the Los Angeles 2028 Olympics after winning the decisive series against their opponents, confirming India's spot at the upcoming Games.",
     "highlight_phrase": "",
-    "footer_text": "Glasgow",
+    "footer_text": "Series win",
     "source_names": [
-      "olympics.com"
+      "Newsonair"
     ],
     "table_rows": []
   },
   {
-    "sport": "All Sports",
-    "category": "Sports Initiative",
+    "sport": "All",
+    "category": "National Sports Initiative",
     "template": "A",
-    "headline": "Prime Minister Narendra Modi announced a nationwide talent hunt for children aged 5‑15, aiming to build a pipeline of athletes for the 2036 Olympic Games.",
+    "headline": "Prime Minister Narendra Modi announced a nationwide talent hunt for children aged 5‑15 on Independence Day, aiming to build a pipeline of athletes for the 2036 Olympic Games.",
     "highlight_phrase": "nationwide talent hunt",
-    "footer_text": "2036 Olympics",
+    "footer_text": "Independence Day",
     "source_names": [
       "The Times of India"
-    ],
-    "table_rows": []
-  },
-  {
-    "sport": "All Sports",
-    "category": "Olympic Bid Push",
-    "template": "A",
-    "headline": "Sports Minister Mansukh Mandaviya highlighted India's aggressive push to host the 2036 Olympic Games, outlining new infrastructure plans and diplomatic outreach.",
-    "highlight_phrase": "",
-    "footer_text": "Mansukh Mandaviya",
-    "source_names": [
-      "NDTV Sports"
-    ],
-    "table_rows": []
-  },
-  {
-    "sport": "All Sports",
-    "category": "Strategic Outlook",
-    "template": "A",
-    "headline": "AP News reports that India is shifting focus from cricket dominance to broader Olympic ambitions, mapping a strategic play on the global sports stage.",
-    "highlight_phrase": "Olympic ambitions",
-    "footer_text": "AP News",
-    "source_names": [
-      "AP News"
     ],
     "table_rows": []
   }
