@@ -1,61 +1,49 @@
 [
   {
     "sport": "Cricket",
-    "category": "Award Pending",
-    "template": "A",
-    "headline": "Former India cricket great still awaits his Padma Shri honour 53 years after his contributions were first announced, highlighting a long‑standing delay in recognition for the legend.",
-    "highlight_phrase": "still awaits his Padma Shri honour",
-    "footer_text": "53‑year wait",
+    "category": "Olympic Qualification",
+    "template": "B",
+    "headline": "The India women's cricket team secured their place at the Los Angeles 2028 Olympic Games by winning the decisive qualification series, confirming the nation's spot in the upcoming tournament.",
+    "highlight_phrase": "",
+    "footer_text": "Series win",
     "source_names": [
-      "News18"
+      "Newsonair"
     ],
     "table_rows": []
   },
   {
-    "sport": "Cricket",
-    "category": "Injury Update",
+    "sport": "Administration",
+    "category": "Olympic Hosting Bid",
     "template": "A",
-    "headline": "Star batter Jemimah Rodrigues ruled out of the Women’s Asia Cup and Asian Games as the BCCI announces a replacement, dealing a major blow to India’s batting line‑up.",
-    "highlight_phrase": "ruled out of the Women’s Asia Cup",
-    "footer_text": "BCCI names replacement",
+    "headline": "Sports Minister Mansukh Mandaviya highlighted India's aggressive push to host the 2036 Olympic Games, outlining new infrastructure projects and diplomatic efforts to win the bid.",
+    "highlight_phrase": "",
+    "footer_text": "Mandaviya briefing",
     "source_names": [
       "NDTV Sports"
     ],
     "table_rows": []
   },
   {
-    "sport": "Cricket",
-    "category": "Leadership Spotlight",
+    "sport": "Administration",
+    "category": "Event Hosting Schedule",
     "template": "A",
-    "headline": "Shubman Gill’s captaincy has unleashed his full potential, propelling him into an elite Test batting list where only Don Bradman previously appeared, according to NDTV Sports analysis.",
+    "headline": "India is set to host eleven major sporting events over the next six months, with a strong focus on building momentum for the country's bid to host the 2036 Olympics.",
     "highlight_phrase": "",
-    "footer_text": "Gill joins elite list",
+    "footer_text": "Next 6 months",
     "source_names": [
-      "NDTV Sports"
+      "The Times of India"
     ],
     "table_rows": []
   },
   {
-    "sport": "Cricket",
-    "category": "Administrative Appointment",
+    "sport": "Multi-sport",
+    "category": "Commonwealth Games Medal Tally",
     "template": "A",
-    "headline": "Former Indian batting maestro VVS Laxman is set to join the BCCI as Director of Cricket, bringing his extensive experience to the board’s strategic planning and talent development.",
+    "headline": "The official Commonwealth Games 2026 website publishes India's comprehensive medals tally, listing all gold, silver and bronze medals won by Indian athletes at the Glasgow edition.",
     "highlight_phrase": "",
-    "footer_text": "New BCCI director",
+    "footer_text": "Glasgow, July 2026",
     "source_names": [
-      "newslivetv.com"
-    ],
-    "table_rows": []
-  },
-  {
-    "sport": "Athletics",
-    "category": "Birthday Celebration",
-    "template": "A",
-    "headline": "Happy birthday to Neeraj Chopra, India’s javelin legend, celebrating his record‑breaking career, multiple gold medals and his status as the nation’s premier track‑and‑field icon.",
-    "highlight_phrase": "",
-    "footer_text": "Javelin icon",
-    "source_names": [
-      "WION"
+      "olympics.com"
     ],
     "table_rows": []
   }
