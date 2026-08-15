@@ -2,40 +2,43 @@
   {
     "image": "post_1.jpg",
     "template": "B",
-    "sport": "Multi-sport",
-    "category": "Medal Tally",
-    "headline": "India exceeded expectations at the 2026 Commonwealth Games in Glasgow, bringing home 39 medals across athletics, shooting, wrestling and more, marking a historic performance for the nation.",
+    "sport": "Cricket",
+    "category": "Team Victory",
+    "headline": "India A defeated Sri Lanka A by eight runs in the opening match of the 2026 Tri‑Nation Series, clinching a thrilling victory that sets the tone for the tournament.",
     "highlight_phrase": "",
-    "footer_text": "Glasgow, 2026",
+    "footer_text": "India A win, 8‑run margin",
     "source_names": [
-      "Rediff"
+      "Sportstar"
     ],
-    "table_rows": []
+    "table_rows": [],
+    "telegram_sent": true
   },
   {
     "image": "post_2.jpg",
-    "template": "B",
+    "template": "A",
     "sport": "Cricket",
-    "category": "Olympic Qualification",
-    "headline": "The India women's cricket team secured a berth for the Los Angeles 2028 Olympics after winning the decisive series against their opponents, confirming India's spot at the upcoming Games.",
+    "category": "Administrative Announcement",
+    "headline": "The BCCI has scheduled a meeting with chief selector Ashish Agarkar to discuss extending his tenure, signalling potential continuity in India's cricket selection leadership ahead of upcoming tours.",
     "highlight_phrase": "",
-    "footer_text": "Series win",
+    "footer_text": "Agenda: tenure extension",
     "source_names": [
-      "Newsonair"
+      "The Indian Express"
     ],
-    "table_rows": []
+    "table_rows": [],
+    "telegram_sent": true
   },
   {
     "image": "post_3.jpg",
     "template": "A",
-    "sport": "All",
-    "category": "National Sports Initiative",
-    "headline": "Prime Minister Narendra Modi announced a nationwide talent hunt for children aged 5‑15 on Independence Day, aiming to build a pipeline of athletes for the 2036 Olympic Games.",
-    "highlight_phrase": "nationwide talent hunt",
-    "footer_text": "Independence Day",
+    "sport": "Multi‑sport",
+    "category": "Olympic Bid Push",
+    "headline": "Sports Minister Mansukh Mandaviya reaffirmed India's ambition to host the 2036 Olympic Games, outlining strategic steps and infrastructure plans to bolster the bid at an international sports forum.",
+    "highlight_phrase": "India's ambition to host the 2036 Olympic Games",
+    "footer_text": "Mandaviya backs 2036 bid",
     "source_names": [
-      "The Times of India"
+      "sports.ndtv.com"
     ],
-    "table_rows": []
+    "table_rows": [],
+    "telegram_sent": true
   }
 ]
