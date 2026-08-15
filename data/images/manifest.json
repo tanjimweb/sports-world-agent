@@ -1,58 +1,41 @@
 [
   {
     "image": "post_1.jpg",
-    "template": "B",
-    "sport": "Cricket",
-    "category": "Olympic Qualification",
-    "headline": "The India women's cricket team secured their place at the Los Angeles 2028 Olympic Games by winning the decisive qualification series, confirming the nation's spot in the upcoming tournament.",
+    "template": "E",
+    "sport": "Athletics",
+    "category": "Athlete Death",
+    "headline": "Asian Games champion shot putter Balwinder Dhaliwal has passed away at the age of 67, prompting tributes from the Indian athletics community and officials.",
     "highlight_phrase": "",
-    "footer_text": "Series win",
+    "footer_text": "Dhaliwal, 67, died",
     "source_names": [
-      "Newsonair"
+      "GK Today"
     ],
-    "table_rows": [],
-    "telegram_sent": true
+    "table_rows": []
   },
   {
     "image": "post_2.jpg",
     "template": "A",
-    "sport": "Administration",
-    "category": "Olympic Hosting Bid",
-    "headline": "Sports Minister Mansukh Mandaviya highlighted India's aggressive push to host the 2036 Olympic Games, outlining new infrastructure projects and diplomatic efforts to win the bid.",
+    "sport": "Multi-sport",
+    "category": "Major Event Announcement",
+    "headline": "India will host eleven major sporting events over the next six months, a strategic move aimed at strengthening the nation’s bid to stage the 2036 Olympic Games.",
     "highlight_phrase": "",
-    "footer_text": "Mandaviya briefing",
+    "footer_text": "11 events, 6 months",
     "source_names": [
-      "NDTV Sports"
+      "The Times of India"
     ],
-    "table_rows": [],
-    "telegram_sent": true
+    "table_rows": []
   },
   {
     "image": "post_3.jpg",
     "template": "A",
-    "sport": "Administration",
-    "category": "Event Hosting Schedule",
-    "headline": "India is set to host eleven major sporting events over the next six months, with a strong focus on building momentum for the country's bid to host the 2036 Olympics.",
-    "highlight_phrase": "",
-    "footer_text": "Next 6 months",
-    "source_names": [
-      "The Times of India"
-    ],
-    "table_rows": [],
-    "telegram_sent": true
-  },
-  {
-    "image": "post_4.jpg",
-    "template": "A",
     "sport": "Multi-sport",
-    "category": "Commonwealth Games Medal Tally",
-    "headline": "The official Commonwealth Games 2026 website publishes India's comprehensive medals tally, listing all gold, silver and bronze medals won by Indian athletes at the Glasgow edition.",
-    "highlight_phrase": "",
-    "footer_text": "Glasgow, July 2026",
+    "category": "Medal Tally Overview",
+    "headline": "The official Commonwealth Games 2026 website publishes India’s comprehensive medals tally, listing all gold, silver and bronze medals won by Indian athletes in Glasgow.",
+    "highlight_phrase": "India’s comprehensive medals tally",
+    "footer_text": "CG 2026 tally released",
     "source_names": [
       "olympics.com"
     ],
-    "table_rows": [],
-    "telegram_sent": true
+    "table_rows": []
   }
 ]
