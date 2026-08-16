@@ -1,35 +1,59 @@
 [
   {
-    "sport": "Athletics",
-    "category": "National Records",
-    "template": "C",
-    "headline": "Indian athletics witnessed a surge of performance breakthroughs as twenty new national records were set across various events within just three months, highlighting the sport's rapid development.",
-    "highlight_phrase": "",
-    "footer_text": "Indian Athletics, 2026",
+    "sport": "Cricket",
+    "category": "Injury Update",
+    "template": "A",
+    "headline": "India opener KL Rahul retired hurt after a painful blow on Day 1 of the first Test in Galle, prompting the coach to confirm his fitness ahead of the next session.",
+    "highlight_phrase": "retired hurt",
+    "footer_text": "Day 1, Galle",
     "source_names": [
-      "The Indian Express"
+      "Yahoo Sports"
     ],
-    "table_rows": [
-      [
-        "Records Set",
-        "20"
-      ],
-      [
-        "Time Span",
-        "3 months"
-      ]
-    ]
+    "table_rows": []
+  },
+  {
+    "sport": "Cricket",
+    "category": "Squad Announcement",
+    "template": "A",
+    "headline": "The BCCI confirms selection timings as it announces India’s T20I squad, naming Vaibhav Sooryavanshi and tipping Shreyas Iyer to replace Suryakumar Yadav as captain for the upcoming series.",
+    "highlight_phrase": "BCCI confirms selection timings",
+    "footer_text": "Squad revealed",
+    "source_names": [
+      "The Times of India"
+    ],
+    "table_rows": []
+  },
+  {
+    "sport": "Cricket",
+    "category": "Schedule Release",
+    "template": "A",
+    "headline": "India vs Afghanistan Cricket Match 2026 schedule released, detailing dates, venues and match timings for the upcoming one‑day international series between the two nations.",
+    "highlight_phrase": "",
+    "footer_text": "Series dates announced",
+    "source_names": [
+      "The Times of India"
+    ],
+    "table_rows": []
   },
   {
     "sport": "Athletics",
-    "category": "Athlete Death",
-    "template": "A",
-    "headline": "Former Asian Games shot put champion Balwinder Dhaliwal, aged 67, passed away, prompting tributes from the Indian athletics community and officials across the sport.",
+    "category": "Record Milestone",
+    "template": "C",
+    "headline": "Farmer’s daughter Anushka Yadav scripts history by setting a new Indian national record, becoming the country’s youngest record holder in her event and raising the bar for junior athletics.",
     "highlight_phrase": "",
-    "footer_text": "July 2026",
+    "footer_text": "800m record",
     "source_names": [
-      "GK Today"
+      "The Times of India"
     ],
-    "table_rows": []
+    "table_rows": [
+      [
+        "Achievement",
+        "Youngest national record holder"
+      ],
+      [
+        "Event",
+        "800 metres"
+      ]
+    ]
   }
 ]
