@@ -5,9 +5,15 @@ Finds real, current sports news (India-focused, per our category strategy).
 
 Step 1: pulls real, just-published headlines from Google News RSS (free,
 no API key, no quota) across several sports-focused search queries.
-Step 2: sends those real candidate headlines to Groq (openai/gpt-oss-120b)
-and asks it to select + rewrite the best 2-8 of them into our post format.
-The model may ONLY pick from the real candidates -- it cannot invent news.
+Step 2: filters out any candidate whose ORIGINAL title closely matches a
+previously-used story (this catches duplicates even when the AI rewords
+the headline differently each time).
+Step 3: sends the remaining real candidate headlines to Groq
+(openai/gpt-oss-120b) and asks it to select + rewrite the best 2-8 of them
+into our post format. The model may ONLY pick from the real candidates --
+it cannot invent news -- and must say which candidate number each post
+came from, so we can track the ORIGINAL title in history (not just its
+own reworded version).
 
 Runs 3 times a day, as part of the single combined workflow (see
 .github/workflows/generate_content.yml).
@@ -17,7 +23,7 @@ ENV VARS REQUIRED (set as GitHub Secrets):
 
 OUTPUT:
     data/posts_today.json   <- this run's posts (used by the image + posting scripts)
-    data/history.json       <- running list of used headlines (to avoid repeats)
+    data/history.json       <- running list of used stories (to avoid repeats)
 """
 
 import os
@@ -107,6 +113,27 @@ Choose exactly one template code for each post, from:
 """
 
 
+# ---------------------------------------------------------------------------
+# Title matching -- used to filter out candidates we've already covered,
+# even when the AI would reword the headline differently this time.
+# ---------------------------------------------------------------------------
+
+def normalize_title(t):
+    t = (t or "").lower()
+    t = re.sub(r"[^a-z0-9\s]", " ", t)
+    t = re.sub(r"\s+", " ", t).strip()
+    return t
+
+
+def titles_similar(a, b, threshold=0.6):
+    wa = set(normalize_title(a).split())
+    wb = set(normalize_title(b).split())
+    if not wa or not wb:
+        return False
+    overlap = len(wa & wb)
+    return overlap / min(len(wa), len(wb)) >= threshold
+
+
 def fetch_google_news_rss(query, max_items=MAX_ITEMS_PER_QUERY):
     url = f"https://news.google.com/rss/search?q={quote(query)}&hl=en-IN&gl=IN&ceid=IN:en"
     try:
@@ -146,6 +173,19 @@ def gather_candidates():
             candidates.append(it)
         time.sleep(1)
     return candidates
+
+
+def filter_against_history(candidates, history):
+    history_titles = [h.get("source_title") or h.get("headline", "") for h in history]
+    fresh = []
+    dropped = 0
+    for c in candidates:
+        if any(titles_similar(c["title"], ht) for ht in history_titles):
+            dropped += 1
+            continue
+        fresh.append(c)
+    print(f"[content_agent] {dropped} candidate(s) dropped as already-used, {len(fresh)} remain.")
+    return fresh
 
 
 def load_history():
@@ -188,6 +228,8 @@ or after, no text outside the JSON array.
 
 Each post must be an object with these exact fields:
 {{
+  "source_candidate_index": <the number of this story in the CANDIDATE
+                              HEADLINES list above, as an integer>,
   "sport": "e.g. Cricket",
   "category": "one short label, e.g. Gold Medal Winner",
   "template": "A" | "B" | "C" | "D" | "E" | "F",
@@ -211,6 +253,7 @@ table_rows rule (IMPORTANT):
 Rules:
 - Do not invent quotes. Do not invent statistics beyond what's implied by the headline.
 - highlight_phrase MUST be an exact substring of headline.
+- source_candidate_index MUST correctly point to the candidate you used.
 - Follow the PRIORITY ORDER above when choosing which candidates to include.
 - Do not repeat any story listed under PREVIOUSLY USED STORIES below.
 """
@@ -281,6 +324,16 @@ def main():
         print("[content_agent] ERROR: no candidate headlines fetched from RSS. Exiting.")
         sys.exit(1)
     print(f"[content_agent] {len(candidates)} unique candidate headlines gathered.")
+
+    candidates = filter_against_history(candidates, history)
+    if not candidates:
+        print("[content_agent] No fresh candidates left after filtering history. "
+              "Writing an empty list so later steps skip cleanly.")
+        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+            json.dump([], f)
+        return
+
     candidates = candidates[:MAX_CANDIDATES]
 
     prompt = build_prompt(history, candidates)
@@ -304,6 +357,8 @@ def main():
 
     used_headlines_lower = {h.get("headline", "").lower() for h in history}
     valid_posts = []
+    used_source_titles = []
+
     for p in posts:
         headline = p.get("headline", "").strip()
         if not headline:
@@ -311,11 +366,23 @@ def main():
         if headline.lower() in used_headlines_lower:
             print(f"[content_agent] skipping duplicate: {headline[:60]}...")
             continue
+
+        idx = p.get("source_candidate_index")
+        source_title = headline
+        if isinstance(idx, int) and 1 <= idx <= len(candidates):
+            source_title = candidates[idx - 1]["title"]
+        else:
+            print(f"[content_agent] warning: missing/invalid source_candidate_index for "
+                  f"'{headline[:50]}...', falling back to headline for dedup tracking.")
+
         if p.get("highlight_phrase", "") not in headline:
             p["highlight_phrase"] = ""
         if not isinstance(p.get("table_rows"), list):
             p["table_rows"] = []
+        p.pop("source_candidate_index", None)
+
         valid_posts.append(p)
+        used_source_titles.append(source_title)
 
     if not valid_posts:
         print("[content_agent] No new posts this run (all duplicates or invalid). "
@@ -326,9 +393,10 @@ def main():
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(valid_posts, f, ensure_ascii=False, indent=2)
 
-    for p in valid_posts:
+    for p, source_title in zip(valid_posts, used_source_titles):
         history.append({
             "headline": p.get("headline", ""),
+            "source_title": source_title,
             "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         })
     save_history(history)
