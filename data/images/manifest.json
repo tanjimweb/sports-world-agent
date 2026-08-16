@@ -1,30 +1,28 @@
 [
   {
     "image": "post_1.jpg",
-    "template": "A",
-    "sport": "Athletics",
-    "category": "Award Announcement",
-    "headline": "Parul Chaudhary says she is motivated to excel after receiving the AFI Best Female Athlete award, highlighting her ambition for the upcoming season.",
-    "highlight_phrase": "motivated to excel",
-    "footer_text": "Parul Chaudhary – AFI award",
+    "template": "B",
+    "sport": "Multi-sport",
+    "category": "Medal Tally",
+    "headline": "India secured a record 39 medals at the 2026 Commonwealth Games in Glasgow, surpassing expectations with strong performances across athletics, shooting, wrestling and more.",
+    "highlight_phrase": "39 medals",
+    "footer_text": "CWG 2026, Glasgow",
     "source_names": [
-      "The News Mill"
+      "Rediff"
     ],
-    "table_rows": [],
-    "telegram_sent": true
+    "table_rows": []
   },
   {
     "image": "post_2.jpg",
     "template": "A",
     "sport": "Athletics",
-    "category": "Birthday Celebration",
-    "headline": "Neeraj Chopra celebrates his birthday, with a recap of his records, achievements, net worth and career highlights, underscoring his status as India's top javelin star.",
-    "highlight_phrase": "Neeraj Chopra celebrates his birthday",
-    "footer_text": "Neeraj Chopra – birthday",
+    "category": "Award Winner",
+    "headline": "Neeraj Chopra was named Best Male Athlete at the Indian Athletics Awards 2025, recognizing his outstanding achievements and contributions to Indian track and field.",
+    "highlight_phrase": "Best Male Athlete",
+    "footer_text": "Awards 2025",
     "source_names": [
-      "WION"
+      "olympics.com"
     ],
-    "table_rows": [],
-    "telegram_sent": true
+    "table_rows": []
   }
 ]
