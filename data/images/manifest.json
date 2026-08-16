@@ -1,50 +1,51 @@
 [
   {
     "image": "post_1.jpg",
-    "template": "C",
-    "sport": "Athletics",
-    "category": "National Record",
-    "headline": "Farmer's daughter Anushka Yadav made history in athletics by setting a new Indian national record, becoming the country's youngest record holder in her event.",
-    "highlight_phrase": "",
-    "footer_text": "Anushka Yadav, record set",
+    "template": "B",
+    "sport": "Cricket",
+    "category": "Olympic Qualification",
+    "headline": "The India women's cricket team secured its place at the Los Angeles 2028 Olympic Games after winning the decisive qualification series, confirming India's participation in the upcoming tournament.",
+    "highlight_phrase": "secured its place at the Los Angeles 2028 Olympic Games",
+    "footer_text": "Qualification series win",
     "source_names": [
-      "The Times of India"
+      "Newsonair"
     ],
-    "table_rows": [
-      [
-        "Record",
-        "National"
-      ],
-      [
-        "Milestone",
-        "Youngest holder"
-      ]
-    ]
+    "table_rows": [],
+    "telegram_sent": true
   },
   {
     "image": "post_2.jpg",
-    "template": "B",
+    "template": "A",
     "sport": "Athletics",
-    "category": "Award Winner",
-    "headline": "Neeraj Chopra was named Best Male Athlete at the Indian Athletics Awards 2025, recognizing his outstanding performances and contributions to Indian track and field.",
-    "highlight_phrase": "Best Male Athlete",
-    "footer_text": "Awards 2025",
+    "category": "Award Winners",
+    "headline": "Neeraj Chopra and Parul Chaudhary were crowned the Best Male and Best Female Athletes respectively at the inaugural Indian Athletics Awards, recognizing their outstanding performances over the year.",
+    "highlight_phrase": "crowned the Best Male and Best Female Athletes",
+    "footer_text": "Indian Athletics Awards 2025",
     "source_names": [
-      "olympics.com"
+      "The Hindu",
+      "Outlook India"
     ],
-    "table_rows": []
+    "table_rows": [],
+    "telegram_sent": true
   },
   {
     "image": "post_3.jpg",
     "template": "A",
     "sport": "General",
-    "category": "Sports Strategy",
-    "headline": "AP News reports that India is shifting its focus from cricket dominance to broader Olympic ambitions, outlining a strategic plan to enhance performance across multiple sports on the global stage.",
-    "highlight_phrase": "broader Olympic ambitions",
-    "footer_text": "AP News analysis",
+    "category": "Talent Hunt Announcement",
+    "headline": "Prime Minister Narendra Modi announced a nationwide talent hunt for children aged 5‑15, aiming to build a robust pipeline of athletes as India prepares its bid for the 2036 Olympic Games.",
+    "highlight_phrase": "nationwide talent hunt for children aged 5‑15",
+    "footer_text": "Modi's 2036 Olympic push",
     "source_names": [
+      "The Times of India",
+      "Hindustan Times",
+      "livemint.com",
+      "WION",
+      "news18.com",
+      "India.com",
       "AP News"
     ],
-    "table_rows": []
+    "table_rows": [],
+    "telegram_sent": true
   }
 ]
