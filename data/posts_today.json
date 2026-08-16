@@ -1,13 +1,34 @@
 [
   {
-    "sport": "Cricket",
-    "category": "Olympic Qualification",
-    "template": "B",
-    "headline": "The India women's cricket team secured a berth for the Los Angeles 2028 Olympics after winning the decisive qualification series, confirming India's spot at the upcoming Games.",
-    "highlight_phrase": "secured a berth for the Los Angeles 2028 Olympics",
-    "footer_text": "Qualification series win",
+    "sport": "Athletics",
+    "category": "National Records",
+    "template": "C",
+    "headline": "Indian athletics witnessed a surge of performance breakthroughs as twenty new national records were set across various events within just three months, highlighting the sport's rapid development.",
+    "highlight_phrase": "",
+    "footer_text": "Indian Athletics, 2026",
     "source_names": [
-      "Newsonair"
+      "The Indian Express"
+    ],
+    "table_rows": [
+      [
+        "Records Set",
+        "20"
+      ],
+      [
+        "Time Span",
+        "3 months"
+      ]
+    ]
+  },
+  {
+    "sport": "Athletics",
+    "category": "Athlete Death",
+    "template": "A",
+    "headline": "Former Asian Games shot put champion Balwinder Dhaliwal, aged 67, passed away, prompting tributes from the Indian athletics community and officials across the sport.",
+    "highlight_phrase": "",
+    "footer_text": "July 2026",
+    "source_names": [
+      "GK Today"
     ],
     "table_rows": []
   }
