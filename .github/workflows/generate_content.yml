@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
@@ -63,23 +64,4 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data/
           git diff --staged --quiet || git commit -m "Update sports_world data [skip ci]"
-          git push        run: |
-          python scripts/content_agent.py
-
-      - name: Generate images
-        run: |
-          python scripts/image_generator.py
-
-      - name: Generate captions
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          python scripts/caption_generator.py
-
-      - name: Commit and push generated content
-        run: |
-          git config user.name "sports-world-bot"
-          git config user.email "actions@github.com"
-          git add data/
-          git diff --quiet --cached || git commit -m "Auto-generate content for $(date -u +%Y-%m-%d)"
           git push
