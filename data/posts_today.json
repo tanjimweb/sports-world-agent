@@ -1,26 +1,35 @@
 [
   {
-    "sport": "Multi-sport",
-    "category": "Medal Tally",
+    "sport": "Kabaddi",
+    "category": "World Cup Title",
     "template": "B",
-    "headline": "India secured a record 39 medals at the 2026 Commonwealth Games in Glasgow, surpassing expectations with strong performances across athletics, shooting, wrestling and more.",
-    "highlight_phrase": "39 medals",
-    "footer_text": "CWG 2026, Glasgow",
+    "headline": "The Indian women's Kabaddi team clinched their second consecutive World Cup title, defeating rivals in a thrilling final as Prime Minister Modi sent his congratulations to the champions.",
+    "highlight_phrase": "",
+    "footer_text": "India beats rivals, 2026",
     "source_names": [
-      "Rediff"
+      "India Today"
     ],
     "table_rows": []
   },
   {
-    "sport": "Athletics",
-    "category": "Award Winner",
-    "template": "A",
-    "headline": "Neeraj Chopra was named Best Male Athlete at the Indian Athletics Awards 2025, recognizing his outstanding achievements and contributions to Indian track and field.",
-    "highlight_phrase": "Best Male Athlete",
-    "footer_text": "Awards 2025",
+    "sport": "Cricket",
+    "category": "Milestone",
+    "template": "C",
+    "headline": "Ravindra Jadeja achieved a rare Test double, joining an elite group of all‑rounders and cementing his place among the greatest players in cricket history.",
+    "highlight_phrase": "rare Test double",
+    "footer_text": "Jadeja joins elite",
     "source_names": [
-      "olympics.com"
+      "Hindustan Times"
     ],
-    "table_rows": []
+    "table_rows": [
+      [
+        "Milestone",
+        "Test double (100 wickets & 1000 runs)"
+      ],
+      [
+        "Ranking",
+        "Among greatest all‑rounders"
+      ]
+    ]
   }
 ]
